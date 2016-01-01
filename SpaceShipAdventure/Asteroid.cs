@@ -5,13 +5,13 @@ using System.Drawing.Drawing2D;
 namespace SpaceShipAdventure
 
 {
-     class Ship : GameObject
+     class  Asteroid : GameObject
     {
 
-        public Ship(): base("ship.png")
+        public Asteroid(int positionX, int positionY): base("Astroid1.png")
 		{
-            Position.X = 10;
-            Position.Y = 300;
+            Position.X = positionX;
+            Position.Y = positionY;
 
         }
 

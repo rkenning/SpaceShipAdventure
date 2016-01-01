@@ -5,12 +5,12 @@ using System.Drawing.Drawing2D;
 namespace SpaceShipAdventure
 
 {
-     class Ship : GameObject
+     class FinishGate : GameObject
     {
 
-        public Ship(): base("ship.png")
+        public FinishGate(): base("FinishGate.png")
 		{
-            Position.X = 10;
+            Position.X = 1200;
             Position.Y = 300;
 
         }

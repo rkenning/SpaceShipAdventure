@@ -96,6 +96,11 @@ namespace SpaceShipAdventure
 
         private void time_GameTick_Tick(object sender, EventArgs e)
         {
+            //Check for Any Collisions  
+
+
+            //Checl fpr 
+
             TimerVal = TimerVal + 0.01;
             lblTime.Text = TimerVal.ToString();
             TheShip.Position.X = TheShip.Position.X + 2;

@@ -4,9 +4,6 @@ using System.Drawing.Drawing2D;
 
 namespace SpaceShipAdventure
 {
-        /// <summary>
-        /// 
-        /// </summary>
         public class GameObject
         {
             protected Image TheImage = null;

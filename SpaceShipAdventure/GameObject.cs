@@ -8,14 +8,14 @@ namespace SpaceShipAdventure
         {
             protected Image TheImage = null;
             public Point Position = new Point(50, 50);
-            protected Rectangle ImageBounds = new Rectangle(0, 0, 10, 10);
+            protected Rectangle ImageBounds = new Rectangle(0, 0, 5, 5);
             protected Rectangle MovingBounds = new Rectangle();
 
             public GameObject(string fileName)
             {
                 TheImage = Image.FromFile(fileName);
-                ImageBounds.Width = TheImage.Width;
-                ImageBounds.Height = TheImage.Height;
+                ImageBounds.Width = TheImage.Width-2;
+                ImageBounds.Height = TheImage.Height-2;
             }
 
             public GameObject()

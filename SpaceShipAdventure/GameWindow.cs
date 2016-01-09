@@ -14,10 +14,14 @@ namespace SpaceShipAdventure
     public partial class GameWindow : Form
     {
 
+        //Define Game Objects
         private Ship TheShip = new Ship();
+        private Asteroid[] Asteroids = new Asteroid[5];
+        private FinishGate theFinish = new FinishGate();
 
-        private Asteroid[] Asteroids = new Asteroid[6];
 
+
+        //Intialise Game Objects
         void InitializeAsteroids()
         {
             Asteroids[0] = new Asteroid(200, 100);
@@ -30,7 +34,7 @@ namespace SpaceShipAdventure
 
 
 
-        private FinishGate theFinish = new FinishGate();
+
 
         private double TimerVal;
 
@@ -55,36 +59,20 @@ namespace SpaceShipAdventure
         {
             Graphics g = e.Graphics;
 
+
+            for (int j = 0; j < Asteroids.Length; j++)
+            {
+                Asteroids[j].Draw(g);
+            }
             TheShip.Draw(g);
 
-            Asteroids[1].Draw(g);
 
-            /* for (int i = 0; i < kNumberOfShields; i++)
-             {
-                 Shields[i].Draw(g);
-             }
 
-             //			g.FillRectangle(Brushes.Black, 0, 0, ClientRectangle.Width, ClientRectangle.Height);
-             TheMan.Draw(g);
-             TheScore.Draw(g);
-             TheHighScore.Draw(g);
-             _livesIndicator.Draw(g);
 
-             if (ActiveBullet)
-             {
-                 TheBullet.Draw(g);
-             }
+            //Update UI details
+            labStatus.Text = TheShip.ShipStatus.ToString();
+            lblPower.Text = TheShip.Power.ToString();
 
-             if (SaucerStart)
-             {
-                 CurrentSaucer.Draw(g);
-             }
-
-             for (int i = 0; i < kNumberOfRows; i++)
-             {
-                 TheInvaders = InvaderRows[i];
-                 TheInvaders.Draw(g);
-             }*/
         }
 
         private void GameWindow_Load(object sender, EventArgs e)
@@ -102,28 +90,47 @@ namespace SpaceShipAdventure
 
         private void time_GameTick_Tick(object sender, EventArgs e)
         {
+
+
+
             //Check for Any Collisions  
 
-
-            //Checl fpr 
-
-            TimerVal = TimerVal + 0.01;
-            lblTime.Text = TimerVal.ToString();
-            TheShip.Position.X = TheShip.Position.X + 2;
-            Invalidate();
-
-
-
+            //Check Astorides
             for (int j = 0; j < Asteroids.Length; j++)
             {
-                //Check for astoride collisions
-                if (Asteroids[j].IsShipColliding(TheShip.GetBounds()))
+                //Check for astoride collisions whith ships
+                if (TheShip.IsShipColliding(Asteroids[j].GetBounds()))
                 {
-                    TheShip.BeenHit = true;
-                    //   PlaySoundInThread("2.wav", 1);
+                    if (!(TheShip.ShipStatus == Ship.Status.Explode))
+                    {
+                        TheShip.ShipStatus = Ship.Status.HitAstorid;
+                        TheShip.AstoidCollid();
+                    }
                 }
             }
 
+            //Perform movement
+            TimerVal = TimerVal + 1;
+            lblTime.Text = TimerVal.ToString();
+
+            if (!(TheShip.ShipStatus == Ship.Status.Explode))
+            {
+                //TODO Move the ship movement out
+                if ((TheShip.ShipStatus == Ship.Status.HitAstorid) == false)
+                {
+                    TheShip.ShipStatus = Ship.Status.Moving;
+                    TheShip.Position.X = TheShip.Position.X + 3;
+                }
+            }
+            //Draw the screen
+            Invalidate();
+
+            if (TheShip.ShipStatus == Ship.Status.Explode)
+            {
+                time_GameTick.Enabled = false;
+                MessageBox.Show("Game Over!");
+                this.Close();
+            }
         }
     }
 }

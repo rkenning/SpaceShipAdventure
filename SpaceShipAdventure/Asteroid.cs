@@ -19,21 +19,8 @@ namespace SpaceShipAdventure
         {
 
             base.Draw(g);
-            /*  if (Died)
-                return;
-
-            if (BeenHit == false)
-            {
-                base.Draw(g);
-            }
-            else
-            {
-                if (CountExplosion < 15)
-                    DrawExplosion(g);
-                else
-                    Died = true;
-            }*/
-
         }
+
+
     }
 }

@@ -10,9 +10,9 @@ namespace SpaceShipAdventure
         public int Power;
         public int direction;
 
-        private Image ShipExplode =  Image.FromFile("ship_explode.png");
-        private Image ShipShoot = Image.FromFile("ship_explode.png");
-        private Image ShipMoving = Image.FromFile("ship_move.png");
+        private Image ShipExplode =  Image.FromFile(@"..\..\images\ship_explode.png");
+        //private Image ShipShoot = Image.FromFile("ship_explode.png");
+        private Image ShipMoving = Image.FromFile(@"..\..\images\ship_move.png");
 
 
 
@@ -27,7 +27,7 @@ namespace SpaceShipAdventure
 
         public Status ShipStatus;
 
-        public Ship() : base("ship.png")
+        public Ship() : base(@"..\..\images\ship.png")
         {
             Position.X = 10;
             Position.Y = 300;

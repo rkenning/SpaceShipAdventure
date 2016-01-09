@@ -8,7 +8,7 @@ namespace SpaceShipAdventure
      class FinishGate : GameObject
     {
 
-        public FinishGate(): base("FinishGate.png")
+        public FinishGate(): base(@"..\..\images\FinishGate.png")
 		{
             Position.X = 1200;
             Position.Y = 300;

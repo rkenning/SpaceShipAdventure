@@ -8,7 +8,7 @@ namespace SpaceShipAdventure
      class  Asteroid : GameObject
     {
 
-        public Asteroid(int positionX, int positionY): base("Astroid1.png")
+        public Asteroid(int positionX, int positionY): base(@"..\..\images\Astroid1.png")
 		{
             Position.X = positionX;
             Position.Y = positionY;

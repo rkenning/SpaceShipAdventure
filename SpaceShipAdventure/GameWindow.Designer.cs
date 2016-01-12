@@ -100,6 +100,7 @@
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.Size = new System.Drawing.Size(1050, 64);
             this.txtDebug.TabIndex = 5;
+            this.txtDebug.Visible = false;
             // 
             // GameWindow
             // 

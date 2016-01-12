@@ -25,6 +25,16 @@ namespace SpaceShipAdventure
             Explode
         };
 
+        public enum Collide_Object
+        {
+            Astoride,
+            HitAstorid,
+            HitLaser,
+            Stopped,
+            Explode
+        };
+
+
         public Status ShipStatus;
 
         public Ship() : base(@"..\..\images\ship.png")
@@ -106,7 +116,7 @@ namespace SpaceShipAdventure
                 {
                     this.ShipStatus = Status.Explode;
                     
-                }    
+                }
                      
                 return true;
 
@@ -116,9 +126,8 @@ namespace SpaceShipAdventure
             return false;
         }
 
-        public void AstoidCollid()
+        public void collide_action(Ship.Collide_Object Collide_Cobject)
         {
-
 
         }
 

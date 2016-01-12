@@ -15,7 +15,7 @@ namespace SpaceShipAdventure
     {
 
         //Define Game Objects
-        private Ship TheShip = new Ship();
+        private Player TheShip = new Player();
         private Asteroid[] Asteroids = new Asteroid[5];
         private FinishGate theFinish = new FinishGate();
 
@@ -48,15 +48,12 @@ namespace SpaceShipAdventure
 
             //            InitializeAllGameObjects(true);
             InitializeAsteroids();
-
-
-
-
         }
 
 
         private void GameWindow_Paint(object sender, PaintEventArgs e)
         {
+            //Graphics f = new Graphics( ;
             Graphics g = e.Graphics;
 
 
@@ -104,7 +101,7 @@ namespace SpaceShipAdventure
                     if (!(TheShip.ShipStatus == Ship.Status.Explode))
                     {
                         TheShip.ShipStatus = Ship.Status.HitAstorid;
-                        TheShip.AstoidCollid();
+                        TheShip.collide_action(Ship.Collide_Object.Astoride);
                     }
                 }
             }

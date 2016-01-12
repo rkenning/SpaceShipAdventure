@@ -15,11 +15,12 @@ namespace SpaceShipAdventure
     {
 
         //Define Game Objects
-        private Player TheShip = new Player();
+  
         private Asteroid[] Asteroids = new Asteroid[5];
         private FinishGate theFinish = new FinishGate();
 
-
+        private Commander PlayerCommander = new Commander();
+        private Ship TheShip;
 
         //Intialise Game Objects
         void InitializeAsteroids()
@@ -61,20 +62,27 @@ namespace SpaceShipAdventure
             {
                 Asteroids[j].Draw(g);
             }
-            TheShip.Draw(g);
+
+            if (TheShip != null)
+            {
+                TheShip.Draw(g);
+                //Update UI details
+                labStatus.Text = TheShip.ShipStatus.ToString();
+                lblPower.Text = TheShip.Power.ToString();
+            };
 
 
 
-
-            //Update UI details
-            labStatus.Text = TheShip.ShipStatus.ToString();
-            lblPower.Text = TheShip.Power.ToString();
+       
 
         }
 
         private void GameWindow_Load(object sender, EventArgs e)
         {
             TimerVal = 0.0;
+            PlayerCommander.Game_Start();
+            TheShip = PlayerCommander.playerShip;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,8 +98,7 @@ namespace SpaceShipAdventure
 
 
 
-            //Check for Any Collisions  
-
+            //------------ Check for Any Collisions  
             //Check Astorides
             for (int j = 0; j < Asteroids.Length; j++)
             {
@@ -101,7 +108,8 @@ namespace SpaceShipAdventure
                     if (!(TheShip.ShipStatus == Ship.Status.Explode))
                     {
                         TheShip.ShipStatus = Ship.Status.HitAstorid;
-                        TheShip.collide_action(Ship.Collide_Object.Astoride);
+                      
+                        PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
                     }
                 }
             }

@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 
 
-namespace SpaceShipAdventure
+namespace SpaceshipCommander
 
 {
      class FinishGate : GameObject

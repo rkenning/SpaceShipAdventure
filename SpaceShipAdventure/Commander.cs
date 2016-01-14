@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SpaceShipAdventure
+namespace SpaceshipCommander
 {
     class Commander
     {
@@ -18,7 +18,7 @@ namespace SpaceShipAdventure
             //Initialise stuff
             // Create a new ship object
 
-            //playerShip = new Ship();
+            playerShip = new Ship();
 
         }
 
@@ -31,7 +31,7 @@ namespace SpaceShipAdventure
         {
             if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
             {
-                MessageBox.Show("Poo");
+                MessageBox.Show("Hit!!!");
             }
         }
 

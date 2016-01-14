@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SpaceShipAdventure.Properties
+namespace SpaceshipCommander.Properties
 {
 
 

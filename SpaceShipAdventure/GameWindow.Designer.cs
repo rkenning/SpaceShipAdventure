@@ -1,4 +1,4 @@
-﻿namespace SpaceShipAdventure
+﻿namespace SpaceshipCommander
 {
     partial class GameWindow
     {

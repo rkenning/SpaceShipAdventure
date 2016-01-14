@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace SpaceShipAdventure
+namespace SpaceshipCommander
 {
     public partial class GameWindow : Form
     {

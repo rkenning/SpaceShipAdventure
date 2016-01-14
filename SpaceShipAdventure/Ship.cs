@@ -41,7 +41,7 @@ namespace SpaceshipCommander
             Position.Y = 300;
             Power = 100;
             ShipStatus = Status.Stopped;
-            direction = 90;
+            direction = 1;
         }
 
 
@@ -70,26 +70,31 @@ namespace SpaceshipCommander
             {
                 case Status.HitAstorid:
                     UpdateBounds();
+                    g.RotateTransform(direction);
                     g.DrawImage(TheImage, MovingBounds, 0, 0, ImageBounds.Width, ImageBounds.Height, GraphicsUnit.Pixel);
                     draw_Shield(g);
                     break;
                 case Status.HitLaser:
                     UpdateBounds();
+                    g.RotateTransform(direction);
                     g.DrawImage(TheImage, MovingBounds, 0, 0, ImageBounds.Width, ImageBounds.Height, GraphicsUnit.Pixel);
                     draw_Shield(g);
                     break;
                 case Status.Moving:
                     UpdateBounds();
+                    g.RotateTransform(direction);
                     g.DrawImage(ShipMoving, MovingBounds, 0, 0, ImageBounds.Width, ImageBounds.Height, GraphicsUnit.Pixel);
                     draw_Shield(g);
                     break;
                 case Status.Stopped:
                     UpdateBounds();
+                    g.RotateTransform(direction);
                     g.DrawImage(TheImage, MovingBounds, 0, 0, ImageBounds.Width, ImageBounds.Height, GraphicsUnit.Pixel);
                     draw_Shield(g);
                     break;
                 case Status.Explode:
                     UpdateBounds();
+                    g.RotateTransform(direction);
                     g.DrawImage(ShipExplode, MovingBounds, 0, 0, ImageBounds.Width, ImageBounds.Height, GraphicsUnit.Pixel);
                     
                     break;

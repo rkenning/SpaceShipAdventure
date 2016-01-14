@@ -31,7 +31,7 @@ namespace SpaceshipCommander
         {
             if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
             {
-                MessageBox.Show("Hit!!!");
+                playerShip.direction = 100;
             }
         }
 

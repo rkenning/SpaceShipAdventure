@@ -37,6 +37,9 @@
             this.labStatus = new System.Windows.Forms.Label();
             this.lblPower = new System.Windows.Forms.Label();
             this.txtDebug = new System.Windows.Forms.TextBox();
+            this.lblDirection = new System.Windows.Forms.Label();
+            this.lblX = new System.Windows.Forms.Label();
+            this.lblY = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // time_GameTick
@@ -102,12 +105,45 @@
             this.txtDebug.TabIndex = 5;
             this.txtDebug.Visible = false;
             // 
+            // lblDirection
+            // 
+            this.lblDirection.AutoSize = true;
+            this.lblDirection.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDirection.Location = new System.Drawing.Point(824, 31);
+            this.lblDirection.Name = "lblDirection";
+            this.lblDirection.Size = new System.Drawing.Size(20, 32);
+            this.lblDirection.TabIndex = 6;
+            this.lblDirection.Text = " ";
+            // 
+            // lblX
+            // 
+            this.lblX.AutoSize = true;
+            this.lblX.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblX.Location = new System.Drawing.Point(892, 32);
+            this.lblX.Name = "lblX";
+            this.lblX.Size = new System.Drawing.Size(20, 32);
+            this.lblX.TabIndex = 7;
+            this.lblX.Text = " ";
+            // 
+            // lblY
+            // 
+            this.lblY.AutoSize = true;
+            this.lblY.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblY.Location = new System.Drawing.Point(940, 32);
+            this.lblY.Name = "lblY";
+            this.lblY.Size = new System.Drawing.Size(20, 32);
+            this.lblY.TabIndex = 8;
+            this.lblY.Text = " ";
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1484, 761);
+            this.Controls.Add(this.lblY);
+            this.Controls.Add(this.lblX);
+            this.Controls.Add(this.lblDirection);
             this.Controls.Add(this.txtDebug);
             this.Controls.Add(this.lblPower);
             this.Controls.Add(this.labStatus);
@@ -132,6 +168,9 @@
         private System.Windows.Forms.Label labStatus;
         private System.Windows.Forms.Label lblPower;
         private System.Windows.Forms.TextBox txtDebug;
+        private System.Windows.Forms.Label lblDirection;
+        private System.Windows.Forms.Label lblX;
+        private System.Windows.Forms.Label lblY;
     }
 }
 

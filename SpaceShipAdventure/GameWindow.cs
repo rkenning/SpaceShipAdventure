@@ -69,6 +69,10 @@ namespace SpaceshipCommander
                 //Update UI details
                 labStatus.Text = TheShip.ShipStatus.ToString();
                 lblPower.Text = TheShip.Power.ToString();
+                lblDirection.Text = TheShip.direction.ToString();
+                lblX.Text = TheShip.Position.X.ToString();
+                lblY.Text = TheShip.Position.Y.ToString();
+
             };
 
 
@@ -96,6 +100,9 @@ namespace SpaceshipCommander
         private void time_GameTick_Tick(object sender, EventArgs e)
         {
 
+            TheShip.Position.X = Vector_Calc.new_x(3, TheShip.direction, TheShip.Position.X);
+            TheShip.Position.Y = Vector_Calc.new_y(3, TheShip.direction, TheShip.Position.Y);
+
 
 
             //------------ Check for Any Collisions  
@@ -121,10 +128,14 @@ namespace SpaceshipCommander
             if (!(TheShip.ShipStatus == Ship.Status.Explode))
             {
                 //TODO Move the ship movement out
+ 
+
                 if ((TheShip.ShipStatus == Ship.Status.HitAstorid) == false)
                 {
                     TheShip.ShipStatus = Ship.Status.Moving;
-                    TheShip.Position.X = TheShip.Position.X + 3;
+                    //TheShip.Position.X = TheShip.Position.X + 3;
+
+                
                 }
             }
             //Draw the screen

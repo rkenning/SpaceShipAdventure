@@ -10,6 +10,8 @@ namespace SpaceshipCommander
     class Commander
     {
         public Ship playerShip { get; set; }
+
+        int engine_count;
         public Commander()
         { }
 
@@ -19,11 +21,18 @@ namespace SpaceshipCommander
             // Create a new ship object
 
             playerShip = new Ship();
-
+            playerShip.direction = 90;
+            playerShip.enginesOn();
+            engine_count = 0;
         }
 
-        public void GameTick()
+        public void ProcessGameTick()
         {
+
+            if (playerShip.Position.Y==200)
+                { playerShip.rotateClockWise(); }
+
+
 
         }
 
@@ -31,8 +40,20 @@ namespace SpaceshipCommander
         {
             if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
             {
-                playerShip.direction = 100;
+                playerShip.rotateClockWise();
+                playerShip.rotateClockWise();
+                playerShip.enginesOn() ;
             }
+
+            if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
+            {
+                playerShip.rotateCounterClockWise();
+                playerShip.rotateCounterClockWise();
+                playerShip.rotateCounterClockWise();
+                playerShip.enginesOn();
+            }
+
+
         }
 
     }

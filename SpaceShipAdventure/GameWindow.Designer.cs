@@ -40,11 +40,15 @@
             this.lblDirection = new System.Windows.Forms.Label();
             this.lblX = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.cmdStop = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblEngines = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // time_GameTick
             // 
-            this.time_GameTick.Interval = 5;
+            this.time_GameTick.Interval = 1;
             this.time_GameTick.Tick += new System.EventHandler(this.time_GameTick_Tick);
             // 
             // label1
@@ -82,10 +86,11 @@
             this.labStatus.AutoSize = true;
             this.labStatus.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labStatus.Location = new System.Drawing.Point(261, 22);
+            this.labStatus.Location = new System.Drawing.Point(1303, 32);
             this.labStatus.Name = "labStatus";
-            this.labStatus.Size = new System.Drawing.Size(0, 32);
+            this.labStatus.Size = new System.Drawing.Size(40, 32);
             this.labStatus.TabIndex = 3;
+            this.labStatus.Text = "     ";
             // 
             // lblPower
             // 
@@ -135,12 +140,55 @@
             this.lblY.TabIndex = 8;
             this.lblY.Text = " ";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(204, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(74, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "TEST WIN";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cmdStop
+            // 
+            this.cmdStop.Location = new System.Drawing.Point(106, 31);
+            this.cmdStop.Name = "cmdStop";
+            this.cmdStop.Size = new System.Drawing.Size(74, 23);
+            this.cmdStop.TabIndex = 10;
+            this.cmdStop.Text = "STOP";
+            this.cmdStop.UseVisualStyleBackColor = true;
+            this.cmdStop.Click += new System.EventHandler(this.cmdStop_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(771, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Direction";
+            // 
+            // lblEngines
+            // 
+            this.lblEngines.AutoSize = true;
+            this.lblEngines.Font = new System.Drawing.Font("Agency FB", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEngines.Location = new System.Drawing.Point(1008, 31);
+            this.lblEngines.Name = "lblEngines";
+            this.lblEngines.Size = new System.Drawing.Size(20, 32);
+            this.lblEngines.TabIndex = 12;
+            this.lblEngines.Text = " ";
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1484, 761);
+            this.Controls.Add(this.lblEngines);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmdStop);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.lblY);
             this.Controls.Add(this.lblX);
             this.Controls.Add(this.lblDirection);
@@ -171,6 +219,10 @@
         private System.Windows.Forms.Label lblDirection;
         private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Label lblY;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button cmdStop;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblEngines;
     }
 }
 

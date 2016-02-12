@@ -15,12 +15,16 @@ namespace SpaceshipCommander
     {
 
         //Define Game Objects
-  
+
         private Asteroid[] Asteroids = new Asteroid[5];
-        private FinishGate theFinish = new FinishGate();
+        private FinishGate theFinish = new FinishGate(1200, 300);
 
         private Commander PlayerCommander = new Commander();
         private Ship TheShip;
+
+        double lastGameEventTick = 0;
+        GameEvent lastGameEvent;
+
 
         //Intialise Game Objects
         void InitializeAsteroids()
@@ -72,12 +76,15 @@ namespace SpaceshipCommander
                 lblDirection.Text = TheShip.direction.ToString();
                 lblX.Text = TheShip.Position.X.ToString();
                 lblY.Text = TheShip.Position.Y.ToString();
+                lblEngines.Text = TheShip.engines.ToString();
+                lblTime.Text = TimerVal.ToString();
+
 
             };
 
 
 
-       
+
 
         }
 
@@ -86,7 +93,7 @@ namespace SpaceshipCommander
             TimerVal = 0.0;
             PlayerCommander.Game_Start();
             TheShip = PlayerCommander.playerShip;
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,13 +107,20 @@ namespace SpaceshipCommander
         private void time_GameTick_Tick(object sender, EventArgs e)
         {
 
-            TheShip.Position.X = Vector_Calc.new_x(3, TheShip.direction, TheShip.Position.X);
-            TheShip.Position.Y = Vector_Calc.new_y(3, TheShip.direction, TheShip.Position.Y);
+            // Calculate Ship movement if the engines are running
+            if (TheShip.engines == 1)
+            {
+                TheShip.Position.X = GraphicUtil.new_x(3, TheShip.direction, TheShip.Position.X);
+                TheShip.Position.Y = GraphicUtil.new_y(3, TheShip.direction, TheShip.Position.Y);
+                TheShip.set_status(Ship.Status.Moving);
+            };
 
 
-
-            //------------ Check for Any Collisions  
+            //------------  Collisions -------------------------
+            
             //Check Astorides
+
+            TheShip.ShipStatus = Ship.Status.Nothing;
             for (int j = 0; j < Asteroids.Length; j++)
             {
                 //Check for astoride collisions whith ships
@@ -115,38 +129,67 @@ namespace SpaceshipCommander
                     if (!(TheShip.ShipStatus == Ship.Status.Explode))
                     {
                         TheShip.ShipStatus = Ship.Status.HitAstorid;
-                      
-                        PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
+
+                        if (TimerVal - lastGameEventTick > 20)
+                        {
+                            PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
+                            lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
+                            lastGameEventTick = TimerVal;
+                        }
                     }
                 }
             }
 
-            //Perform movement
-            TimerVal = TimerVal + 1;
-            lblTime.Text = TimerVal.ToString();
-
-            if (!(TheShip.ShipStatus == Ship.Status.Explode))
+            /* Check for the screen edges and stop the ship */
+            if (TheShip.Position.Y < 0 || TheShip.Position.Y > 700 || TheShip.Position.X < 0 || TheShip.Position.X > 1400)
             {
-                //TODO Move the ship movement out
- 
-
-                if ((TheShip.ShipStatus == Ship.Status.HitAstorid) == false)
+                TheShip.set_status(Ship.Status.Stopped);
+                if (TimerVal - lastGameEventTick > 10)
                 {
-                    TheShip.ShipStatus = Ship.Status.Moving;
-                    //TheShip.Position.X = TheShip.Position.X + 3;
-
-                
+                    PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
+                    lastGameEventTick = TimerVal;
                 }
-            }
+                }
+
+
+            //------------  End of Collisions -------------------------
+
+        
+            
+            
+
             //Draw the screen
             Invalidate();
 
+            //Post screen update check for ship explosion
             if (TheShip.ShipStatus == Ship.Status.Explode)
             {
                 time_GameTick.Enabled = false;
                 MessageBox.Show("Game Over!");
                 this.Close();
             }
+
+
+            /*NOW Perform the players game tick code */
+            PlayerCommander.ProcessGameTick();
+
+            /* Finally Add to the timer variable */
+            TimerVal = TimerVal + 1;
+
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            testForm test = new testForm();
+            test.Show();
+
+        }
+
+        private void cmdStop_Click(object sender, EventArgs e)
+        {
+            time_GameTick.Enabled = false;
+        }
+
+
     }
 }

@@ -69,7 +69,9 @@ namespace SpaceshipCommander
 
             if (TheShip != null)
             {
+                theFinish.Draw(g);
                 TheShip.Draw(g);
+                
                 //Update UI details
                 labStatus.Text = TheShip.ShipStatus.ToString();
                 lblPower.Text = TheShip.Power.ToString();

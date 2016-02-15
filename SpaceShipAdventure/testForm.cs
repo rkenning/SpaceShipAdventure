@@ -35,7 +35,7 @@ namespace SpaceshipCommander
         private void testForm_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            test.Draw(g,angle_);
+           // test.Draw(g,angle_);
             test2.Draw2(g,angle_);
 
         }

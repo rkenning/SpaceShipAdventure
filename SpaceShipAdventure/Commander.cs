@@ -9,7 +9,7 @@ namespace SpaceshipCommander
 {
     class Commander
     {
-        public Ship playerShip { get; set; }
+        public Ship playerShip { get; set; } // TODO Impliment iShipPlayer (Only allowing limited functions)
 
         int engine_count;
         public Commander()

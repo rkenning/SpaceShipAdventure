@@ -9,7 +9,9 @@ namespace SpaceshipCommander
     {
         public int Power;
         public int direction;
+        public int volicity { get; set; }
         public int engines { get; set; } // 1 on 0 off
+        public string ShipName;
 
         private Image ShipExplode = Image.FromFile(@"..\..\images\ship_explode.png");
         //private Image ShipShoot = Image.FromFile("ship_explode.png");
@@ -60,6 +62,7 @@ namespace SpaceshipCommander
         {
             Position.X = 10;
             Position.Y = 300;
+            volicity = 4;
             Power = 100;
             ShipStatus = Status.Stopped;
             direction = 90;

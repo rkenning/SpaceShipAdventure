@@ -21,9 +21,10 @@ namespace SpaceshipCommander
             // Create a new ship object
 
             playerShip = new Ship();
+            playerShip.ShipName = "Ryan's Ship";
             playerShip.direction = 90;
             playerShip.enginesOn();
-            engine_count = 0;
+            //engine_count = 0;
         }
 
         public void ProcessGameTick()

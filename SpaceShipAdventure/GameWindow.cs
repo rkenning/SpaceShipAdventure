@@ -29,8 +29,8 @@ namespace SpaceshipCommander
         //Intialise Game Objects
         void InitializeAsteroids()
         {
-            Asteroids[0] = new Asteroid(200, 100);
-            Asteroids[1] = new Asteroid(300, 300);
+           Asteroids[0] = new Asteroid(1200, 100);
+            Asteroids[1] = new Asteroid(1300, 300);
             Asteroids[2] = new Asteroid(410, 220);
             Asteroids[3] = new Asteroid(750, 500);
             Asteroids[4] = new Asteroid(800, 400);
@@ -58,7 +58,7 @@ namespace SpaceshipCommander
 
         private void GameWindow_Paint(object sender, PaintEventArgs e)
         {
-            //Graphics f = new Graphics( ;
+           // Graphics cach = new Graphics(e) ;
             Graphics g = e.Graphics;
 
 
@@ -112,8 +112,8 @@ namespace SpaceshipCommander
             // Calculate Ship movement if the engines are running
             if (TheShip.engines == 1)
             {
-                TheShip.Position.X = GraphicUtil.new_x(3, TheShip.direction, TheShip.Position.X);
-                TheShip.Position.Y = GraphicUtil.new_y(3, TheShip.direction, TheShip.Position.Y);
+                TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X);
+                TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y);
                 TheShip.set_status(Ship.Status.Moving);
             };
 
@@ -153,15 +153,18 @@ namespace SpaceshipCommander
                 }
                 }
 
+            if (TheShip.IsShipColliding(theFinish.GetBounds()))
+            {
+                time_GameTick.Enabled = false;
+                MessageBox.Show("Ship : ["+TheShip.ShipName+"], finish level in :"+TimerVal.ToString()+" ticks");
+                
+            };
 
-            //------------  End of Collisions -------------------------
 
-        
-            
-            
 
-            //Draw the screen
-            Invalidate();
+
+                //Draw the screen
+                Invalidate();
 
             //Post screen update check for ship explosion
             if (TheShip.ShipStatus == Ship.Status.Explode)

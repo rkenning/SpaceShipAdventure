@@ -11,7 +11,6 @@ namespace SpaceshipCommander
     {
         public Ship playerShip { get; set; } // TODO Impliment iShipPlayer (Only allowing limited functions)
 
-        int engine_count;
         public Commander()
         { }
 
@@ -19,21 +18,19 @@ namespace SpaceshipCommander
         {
             //Initialise stuff
             // Create a new ship object
-
-            playerShip = new Ship();
-            playerShip.ShipName = "Ryan's Ship";
-            playerShip.direction = 90;
-            playerShip.enginesOn();
-            //engine_count = 0;
+           playerShip = new Ship();
+            playerShip.ShipName = "Jen's Ship";
+           playerShip.enginesOn();
         }
 
         public void ProcessGameTick()
         {
 
-            if (playerShip.Position.Y==200)
+            //            if (playerShip.Position.Y==200)
+            //                { playerShip.rotateClockWise(); }
+
+            if (playerShip.Position.X == 330)
                 { playerShip.rotateClockWise(); }
-
-
 
         }
 
@@ -48,8 +45,6 @@ namespace SpaceshipCommander
 
             if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
             {
-                playerShip.rotateCounterClockWise();
-                playerShip.rotateCounterClockWise();
                 playerShip.rotateCounterClockWise();
                 playerShip.enginesOn();
             }

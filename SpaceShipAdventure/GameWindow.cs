@@ -29,7 +29,7 @@ namespace SpaceshipCommander
         //Intialise Game Objects
         void InitializeAsteroids()
         {
-           Asteroids[0] = new Asteroid(1200, 100);
+            Asteroids[0] = new Asteroid(500, 300);
             Asteroids[1] = new Asteroid(1300, 300);
             Asteroids[2] = new Asteroid(410, 220);
             Asteroids[3] = new Asteroid(750, 500);
@@ -50,6 +50,8 @@ namespace SpaceshipCommander
             SetStyle(ControlStyles.UserPaint, true);
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
+            this.UpdateStyles();
 
             //            InitializeAllGameObjects(true);
             InitializeAsteroids();
@@ -58,33 +60,43 @@ namespace SpaceshipCommander
 
         private void GameWindow_Paint(object sender, PaintEventArgs e)
         {
-           // Graphics cach = new Graphics(e) ;
+            Bitmap curBitmap = new Bitmap(ClientRectangle.Width, ClientRectangle.Height);
+            Graphics g1 = Graphics.FromImage(curBitmap);
             Graphics g = e.Graphics;
 
+            PointF power = new PointF(1350f, 1f);
+            PointF direction = new PointF(1350f, 15f);
+            PointF X_Cord = new PointF(1350f, 30f);
+            PointF Y_Cord = new PointF(1350f, 45f);
+            PointF Engines = new PointF(1350f, 60f);
+            PointF Time = new PointF(1350f, 75f);
 
             for (int j = 0; j < Asteroids.Length; j++)
             {
-                Asteroids[j].Draw(g);
+                Asteroids[j].Draw(g1);
             }
 
             if (TheShip != null)
             {
-                theFinish.Draw(g);
-                TheShip.Draw(g);
-                
-                //Update UI details
-                labStatus.Text = TheShip.ShipStatus.ToString();
-                lblPower.Text = TheShip.Power.ToString();
-                lblDirection.Text = TheShip.direction.ToString();
-                lblX.Text = TheShip.Position.X.ToString();
-                lblY.Text = TheShip.Position.Y.ToString();
-                lblEngines.Text = TheShip.engines.ToString();
-                lblTime.Text = TimerVal.ToString();
+                theFinish.Draw(g1);
+                TheShip.Draw(g1);
+
+
+                // Draw the UI
+                using (Font arialFont = new Font("Arial", 10))
+                {
+                    g1.DrawString("Ship Power:" + TheShip.Power.ToString(), arialFont, Brushes.Red, power);
+                    g1.DrawString("Direction:" + TheShip.direction.ToString(), arialFont, Brushes.Red, direction);
+                    g1.DrawString("X Cord:" + TheShip.Position.X.ToString(), arialFont, Brushes.Red, X_Cord);
+                    g1.DrawString("Y Cord:" + TheShip.Position.Y.ToString(), arialFont, Brushes.Red, Y_Cord);
+                    g1.DrawString("Engines:" + TheShip.engines.ToString(), arialFont, Brushes.Red, Engines);
+                    g1.DrawString("Tick:" + TimerVal.ToString(), arialFont, Brushes.Red, Time);
+                }
 
 
             };
 
-
+            g.DrawImage(curBitmap, 0, 0);
 
 
 
@@ -109,17 +121,20 @@ namespace SpaceshipCommander
         private void time_GameTick_Tick(object sender, EventArgs e)
         {
 
-            // Calculate Ship movement if the engines are running
-            if (TheShip.engines == 1)
+            if (TheShip != null)
             {
-                TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X);
-                TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y);
-                TheShip.set_status(Ship.Status.Moving);
-            };
 
+                // Calculate Ship movement if the engines are running
+                if (TheShip.engines == 1)
+                {
+                    TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X);
+                    TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y);
+                    TheShip.set_status(Ship.Status.Moving);
+                };
+            
 
             //------------  Collisions -------------------------
-            
+
             //Check Astorides
 
             TheShip.ShipStatus = Ship.Status.Nothing;
@@ -146,34 +161,36 @@ namespace SpaceshipCommander
             if (TheShip.Position.Y < 0 || TheShip.Position.Y > 700 || TheShip.Position.X < 0 || TheShip.Position.X > 1400)
             {
                 TheShip.set_status(Ship.Status.Stopped);
-                if (TimerVal - lastGameEventTick > 10)
+                if (TimerVal - lastGameEventTick > 1)
                 {
                     PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
                     lastGameEventTick = TimerVal;
                 }
-                }
+            }
 
             if (TheShip.IsShipColliding(theFinish.GetBounds()))
             {
                 time_GameTick.Enabled = false;
-                MessageBox.Show("Ship : ["+TheShip.ShipName+"], finish level in :"+TimerVal.ToString()+" ticks");
-                
+                MessageBox.Show("Ship : [" + TheShip.ShipName + "], finish level in :" + TimerVal.ToString() + " ticks");
+
             };
 
+        };
 
 
+            //Draw the screen
+            Invalidate();
 
-                //Draw the screen
-                Invalidate();
-
-            //Post screen update check for ship explosion
-            if (TheShip.ShipStatus == Ship.Status.Explode)
+            if (TheShip != null)
             {
-                time_GameTick.Enabled = false;
-                MessageBox.Show("Game Over!");
-                this.Close();
+                //Post screen update check for ship explosion
+                if (TheShip.ShipStatus == Ship.Status.Explode)
+                {
+                    time_GameTick.Enabled = false;
+                    MessageBox.Show("Game Over!");
+                    this.Close();
+                }
             }
-
 
             /*NOW Perform the players game tick code */
             PlayerCommander.ProcessGameTick();

@@ -62,7 +62,7 @@ namespace SpaceshipCommander
         {
             Position.X = 10;
             Position.Y = 300;
-            volicity = 4;
+            volicity = 5;
             Power = 100;
             ShipStatus = Status.Stopped;
             direction = 90;

@@ -15,8 +15,8 @@ namespace SpaceshipCommander
         public Image img3 = Image.FromFile(@"..\..\images\FinishGate\FinishGate3.png");
         public Image img4 = Image.FromFile(@"..\..\images\FinishGate\FinishGate4.png");
         public Image img5 = Image.FromFile(@"..\..\images\FinishGate\FinishGate5.png");
-
-        
+        public Image img6 = Image.FromFile(@"..\..\images\FinishGate\FinishGate6.png");
+        public Image img7 = Image.FromFile(@"..\..\images\FinishGate\FinishGate7.png");
 
         public FinishGate(int x_, int y_): base(@"..\..\images\FinishGate.png")
 		{
@@ -35,7 +35,7 @@ namespace SpaceshipCommander
             }
                 
             Image temp = img1;
-            if (imageCount == 5)
+            if (imageCount == 8)
                 { imageCount = 1; };
             switch (imageCount)
             {
@@ -53,6 +53,12 @@ namespace SpaceshipCommander
                     break;
                 case 5:
                     temp = img5;
+                    break;
+                case 6:
+                    temp = img6;
+                    break;
+                case 7:
+                    temp = img7;
                     break;
             }
 

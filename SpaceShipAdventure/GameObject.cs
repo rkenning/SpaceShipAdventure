@@ -8,8 +8,8 @@ namespace SpaceshipCommander
         {
             protected Image TheImage = null;
             public Point Position = new Point(50, 50);
-            protected Rectangle ImageBounds = new Rectangle(0, 0, 5, 5);
-            protected Rectangle MovingBounds = new Rectangle();
+            public Rectangle ImageBounds = new Rectangle(0, 0, 5, 5);
+            public Rectangle MovingBounds = new Rectangle();
 
             public GameObject(string fileName)
             {
@@ -56,7 +56,7 @@ namespace SpaceshipCommander
                 return MovingBounds;
             }
 
-            public void UpdateBounds()
+            public virtual void UpdateBounds()
             {
                 MovingBounds = ImageBounds;
                 MovingBounds.Offset(Position);

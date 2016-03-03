@@ -23,6 +23,16 @@ namespace SpaceshipCommander
             Position.X = x_;
             Position.Y = y_;
 
+     
+
+        }
+
+        public override void UpdateBounds()
+        {
+            MovingBounds = ImageBounds;
+           base.MovingBounds.Width = MovingBounds.Width - 20;
+           base.MovingBounds.Height = MovingBounds.Height - 20;
+            MovingBounds.Offset(Position);
         }
 
         public override void  Draw(Graphics g)
@@ -67,13 +77,7 @@ namespace SpaceshipCommander
             temp = null;
         }
 
-        public void Draw2(Graphics g, int angle_)
-        {
-            
-            UpdateBounds();
-           // g.DrawImage(normalgate, MovingBounds, 0, 0, ImageBounds.Width, ImageBounds.Height, GraphicsUnit.Pixel);
-           
-        }
+
 
 
 

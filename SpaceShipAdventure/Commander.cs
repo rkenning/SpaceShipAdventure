@@ -29,8 +29,9 @@ namespace SpaceshipCommander
             //            if (playerShip.Position.Y==200)
             //                { playerShip.rotateClockWise(); }
 
-            if (playerShip.Position.X == 330)
-                { playerShip.rotateClockWise(); }
+            //if (playerShip.Position.X == 330)
+            //  { playerShip.rotateClockWise(); }
+            playerShip.enginesOn();
 
         }
 
@@ -39,7 +40,7 @@ namespace SpaceshipCommander
             if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
             {
                 playerShip.rotateClockWise();
-                playerShip.rotateClockWise();
+              //  playerShip.rotateClockWise();
                 playerShip.enginesOn() ;
             }
 

@@ -17,7 +17,7 @@ namespace SpaceshipCommander
         //Define Game Objects
 
         private Asteroid[] Asteroids = new Asteroid[5];
-        private FinishGate theFinish = new FinishGate(200, 300);
+        private FinishGate theFinish = new FinishGate(1000, 300);
 
         private Commander PlayerCommander = new Commander();
         private Ship TheShip;
@@ -123,7 +123,7 @@ namespace SpaceshipCommander
         private void time_GameTick_Tick(object sender, EventArgs e)
         {
 
-           
+
 
             if (TheShip != null)
             {
@@ -132,7 +132,7 @@ namespace SpaceshipCommander
                 // Calculate Ship movement if the engines are running
                 if (TheShip.engines == 1)
                 {
-                    
+
                     TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X);
                     TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y);
                     TheShip.set_status(Ship.Status.Moving);
@@ -153,33 +153,29 @@ namespace SpaceshipCommander
                         {
                             TheShip.ShipStatus = Ship.Status.HitAstorid;
                             TheShip.engines = 0;
-                            TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity+20, TheShip.direction*-1, TheShip.Position.X);
-                            TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity+20, TheShip.direction*-2, TheShip.Position.Y);
+                            TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X);
+                            TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y);
 
-                            if (TimerVal - lastGameEventTick > 1)
-                            {
                                 PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
                                 lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
                                 lastGameEventTick = TimerVal;
-                             
-                               
-                            }
-                          
                         }
                     }
                 }
 
                 /* Check for the screen edges and stop the ship */
-                if (TheShip.Position.Y < 0 || TheShip.Position.Y > 700 || TheShip.Position.X < 0 || TheShip.Position.X > 1400)
+                if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 50 || TheShip.Position.X < 0 || TheShip.Position.X > ClientRectangle.Width - 50)
                 {
                     TheShip.set_status(Ship.Status.Stopped);
-                    if (TimerVal - lastGameEventTick > 1)
-                    {
+
+                        TheShip.engines = 0;
+                        TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X);
+                        TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y);
                         PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
                         lastGameEventTick = TimerVal;
-                    }
                 }
 
+                /* Check the Ship has reached the finish */
                 if (TheShip.IsShipColliding(theFinish.GetBounds()))
                 {
                     time_GameTick.Enabled = false;

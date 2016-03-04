@@ -35,6 +35,13 @@ namespace SpaceshipCommander
             MovingBounds.Offset(Position);
         }
 
+        public override  Rectangle GetBounds()
+        {
+            Rectangle temp = MovingBounds;
+            temp.Inflate(-30, -30);
+            return temp;
+        }
+
         public override void  Draw(Graphics g)
         {
 

@@ -64,12 +64,14 @@ namespace SpaceshipCommander
             Graphics g1 = Graphics.FromImage(curBitmap);
             Graphics g = e.Graphics;
 
-            PointF power = new PointF(1350f, 1f);
-            PointF direction = new PointF(1350f, 15f);
-            PointF X_Cord = new PointF(1350f, 30f);
-            PointF Y_Cord = new PointF(1350f, 45f);
-            PointF Engines = new PointF(1350f, 60f);
-            PointF Time = new PointF(1350f, 75f);
+            Single textRight = 1050f;
+
+            PointF power = new PointF(textRight, 1f);
+            PointF direction = new PointF(textRight, 15f);
+            PointF X_Cord = new PointF(textRight, 30f);
+            PointF Y_Cord = new PointF(textRight, 45f);
+            PointF Engines = new PointF(textRight, 60f);
+            PointF Time = new PointF(textRight, 75f);
 
             for (int j = 0; j < Asteroids.Length; j++)
             {

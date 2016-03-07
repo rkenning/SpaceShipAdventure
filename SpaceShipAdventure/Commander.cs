@@ -20,8 +20,10 @@ namespace SpaceshipCommander
             //Initialise stuff
             // Create a new ship object
             playerShip = new Ship();
-            playerShip.ShipName = "Jen's Ship";
+            playerShip.ShipName = "Player's Ship";
             playerShip.enginesOn();
+
+            
         }
 
         public void ProcessGameTick()

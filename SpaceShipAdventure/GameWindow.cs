@@ -20,10 +20,19 @@ namespace SpaceshipCommander
         private FinishGate theFinish = new FinishGate(1000, 300);
 
         private Commander PlayerCommander = new Commander();
-        private Ship TheShip;
+
+        iShip TheShip;
 
         double lastGameEventTick = 0;
         GameEvent lastGameEvent;
+
+        private void GameWindow_Load(object sender, EventArgs e)
+        {
+            TimerVal = 0.0;
+            PlayerCommander.Game_Start();
+            TheShip = (iShip)PlayerCommander.playerShip;
+
+        }
 
 
         //Intialise Game Objects
@@ -104,13 +113,7 @@ namespace SpaceshipCommander
 
         }
 
-        private void GameWindow_Load(object sender, EventArgs e)
-        {
-            TimerVal = 0.0;
-            PlayerCommander.Game_Start();
-            TheShip = PlayerCommander.playerShip;
 
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {

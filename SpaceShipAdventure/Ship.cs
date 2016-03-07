@@ -5,10 +5,10 @@ using System.Drawing.Drawing2D;
 namespace SpaceshipCommander
 
 {
-    class Ship : GameObject
+    class Ship : iShip
     {
         public int Power;
-        public int direction;
+        private int direction;
         public int volicity { get; set; }
         public int engines { get; set; } // 1 on 0 off
         public string ShipName;
@@ -58,8 +58,9 @@ namespace SpaceshipCommander
 
 
 
-        public Ship() : base(@"..\..\images\Ship\Ship90.png")
+        public Ship() 
         {
+            base.TheImage = ShipMove90;
             Position.X = 10;
             Position.Y = 300;
             volicity = 4;

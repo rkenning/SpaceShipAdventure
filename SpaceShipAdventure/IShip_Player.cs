@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceshipCommander
 {
-    class Iship 
+    class Iship_player
     {
         public int Power;
         public int direction;
@@ -27,6 +27,6 @@ namespace SpaceshipCommander
 
         public Status ShipStatus { get; set; }
 
-        //void set_status(Iship.Status status);
+       // void set_status(Iship.Status status);
     }
 }

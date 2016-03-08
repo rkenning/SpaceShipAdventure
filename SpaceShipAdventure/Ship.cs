@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 namespace SpaceshipCommander
 
 {
-    class Ship : iShip
+    class Ship : Iship , Iship_player
     {
         public int Power;
         private int direction;

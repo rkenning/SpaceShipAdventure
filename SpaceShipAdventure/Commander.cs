@@ -9,11 +9,13 @@ namespace SpaceshipCommander
 {
     class Commander
     {
-        public Ship playerShip { get; set; } // TODO Impliment iShipPlayer (Only allowing limited functions)
+        public Iship_player playerShip { get; set; } // TODO Impliment iShipPlayer (Only allowing limited functions)
         int tick_count = 0;
 
         public Commander()
-        { }
+        {
+
+        }
 
         public void Game_Start()
         {

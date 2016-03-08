@@ -40,7 +40,7 @@
             // 
             // time_GameTick
             // 
-            this.time_GameTick.Interval = 2;
+            this.time_GameTick.Interval = 1;
             this.time_GameTick.Tick += new System.EventHandler(this.time_GameTick_Tick);
             // 
             // button1

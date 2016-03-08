@@ -61,7 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commander.cs" />
-    <Compile Include="iShip.cs" />
+    <Compile Include="Iship.cs" />
+    <Compile Include="IShip_Player.cs" />
     <Compile Include="testForm.cs">
       <SubType>Form</SubType>
     </Compile>

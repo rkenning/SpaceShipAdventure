@@ -21,7 +21,7 @@ namespace SpaceshipCommander
 
         private Commander PlayerCommander = new Commander();
 
-        iShip TheShip;
+        Iship TheShip;
 
         double lastGameEventTick = 0;
         GameEvent lastGameEvent;
@@ -30,7 +30,7 @@ namespace SpaceshipCommander
         {
             TimerVal = 0.0;
             PlayerCommander.Game_Start();
-            TheShip = (iShip)PlayerCommander.playerShip;
+            TheShip = (Iship)PlayerCommander.playerShip;
 
         }
 

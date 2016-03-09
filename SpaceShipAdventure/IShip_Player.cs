@@ -6,26 +6,16 @@ using System.Threading.Tasks;
 
 namespace SpaceshipCommander
 {
-    class Iship_player
+    interface IShip_Player
     {
-        public int Power;
-        public int direction;
-        public int volicity { get; set; }
-        public int engines { get; set; } // 1 on 0 off
-        public string ShipName;
 
 
-        public enum Status
-        {
-            Moving,
-            HitAstorid,
-            HitLaser,
-            Stopped,
-            Nothing,
-            Explode
-        };
+        void set_Ship_Name(String Ship_Name);
+        void enginesOn();
+        void rotateClockWise();
+        void rotateCounterClockWise();
 
-        public Status ShipStatus { get; set; }
+
 
        // void set_status(Iship.Status status);
     }

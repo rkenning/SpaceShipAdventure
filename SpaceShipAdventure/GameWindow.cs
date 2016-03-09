@@ -21,7 +21,7 @@ namespace SpaceshipCommander
 
         private Commander PlayerCommander = new Commander();
 
-        Iship TheShip;
+        IShip TheShip;
 
         double lastGameEventTick = 0;
         GameEvent lastGameEvent;
@@ -30,7 +30,7 @@ namespace SpaceshipCommander
         {
             TimerVal = 0.0;
             PlayerCommander.Game_Start();
-            TheShip = (Iship)PlayerCommander.playerShip;
+            TheShip = (IShip)PlayerCommander.playerShip;
 
         }
 
@@ -136,9 +136,10 @@ namespace SpaceshipCommander
                 if (TheShip.engines == 1)
                 {
 
-                    TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X);
-                    TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y);
-                    TheShip.set_status(Ship.Status.Moving);
+
+                    TheShip.Position = new Point(GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X)
+                    , GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y));
+                    //TheShip.set_status(Ship.Status.Moving);
                 };
 
 
@@ -146,7 +147,7 @@ namespace SpaceshipCommander
 
                 //Check Astorides
 
-                TheShip.ShipStatus = Ship.Status.Nothing;
+                //TheShip.ShipStatus = Ship.Status.Nothing;
                 for (int j = 0; j < Asteroids.Length; j++)
                 {
                     //Check for astoride collisions whith ships
@@ -156,8 +157,8 @@ namespace SpaceshipCommander
                         {
                             TheShip.ShipStatus = Ship.Status.HitAstorid;
                             TheShip.engines = 0;
-                            TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X);
-                            TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y);
+                            TheShip.Position  = new Point (GraphicUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X)
+                            ,GraphicUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y));
 
                                 PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
                                 lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
@@ -172,8 +173,8 @@ namespace SpaceshipCommander
                     TheShip.set_status(Ship.Status.Stopped);
 
                         TheShip.engines = 0;
-                        TheShip.Position.X = GraphicUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X);
-                        TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y);
+                        TheShip.Position = new point(GraphicUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
+                        TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
                         PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
                         lastGameEventTick = TimerVal;
                 }

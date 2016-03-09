@@ -5,13 +5,14 @@ using System.Drawing.Drawing2D;
 namespace SpaceshipCommander
 
 {
-    class Ship : Iship , Iship_player
+    class Ship :  GameObject , IShip, IShip_Player 
     {
-        public int Power;
-        private int direction;
+        public new Point Position { get; set; } 
+        public int Power { get; set; }
+        public int direction { get; set; }
         public int volicity { get; set; }
         public int engines { get; set; } // 1 on 0 off
-        public string ShipName;
+        public string ShipName { get; set; }
 
         private Image ShipExplode = Image.FromFile(@"..\..\images\ship_explode.png");
         //private Image ShipShoot = Image.FromFile("ship_explode.png");
@@ -51,6 +52,11 @@ namespace SpaceshipCommander
 
         }
 
+        public void set_Ship_Name(string ship_name)
+        {
+            this.ShipName = ship_name;
+        }
+
         public void enginesOn()
         {
             engines = 1;
@@ -61,19 +67,14 @@ namespace SpaceshipCommander
         public Ship() 
         {
             base.TheImage = ShipMove90;
-            Position.X = 10;
-            Position.Y = 300;
+            Position = new Point(10, 300);
+      
             volicity = 4;
             Power = 100;
             ShipStatus = Status.Stopped;
             direction = 90;
         }
 
-
-        public void set_direction(int direction_)
-        {
-            direction = direction_;
-        }
 
         public void rotateCounterClockWise()
         {

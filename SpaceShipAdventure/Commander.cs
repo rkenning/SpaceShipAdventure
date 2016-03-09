@@ -9,7 +9,7 @@ namespace SpaceshipCommander
 {
     class Commander
     {
-        public IShip_Player playerShip { get; set; } // TODO Impliment iShipPlayer (Only allowing limited functions)
+        public IShip_Player playerShip { get; set; } 
         int tick_count = 0;
 
         public Commander()
@@ -24,6 +24,7 @@ namespace SpaceshipCommander
             playerShip = new Ship();
             playerShip.set_Ship_Name("Player's Ship");
             playerShip.enginesOn();
+            
 
             
         }

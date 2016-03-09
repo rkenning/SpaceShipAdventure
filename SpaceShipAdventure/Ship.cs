@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 
@@ -41,6 +42,8 @@ namespace SpaceshipCommander
 
         public Status ShipStatus { get; set; }
 
+
+
         public void set_status(Ship.Status status)
         {
             ShipStatus = status;
@@ -66,8 +69,8 @@ namespace SpaceshipCommander
 
         public Ship() 
         {
-            base.TheImage = ShipMove90;
-            Position = new Point(10, 300);
+            this.TheImage = ShipMove90;
+            this.Position = new Point(200, 300);
       
             volicity = 4;
             Power = 100;

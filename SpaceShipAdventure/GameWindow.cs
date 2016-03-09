@@ -173,8 +173,8 @@ namespace SpaceshipCommander
                     TheShip.set_status(Ship.Status.Stopped);
 
                         TheShip.engines = 0;
-                        TheShip.Position = new point(GraphicUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
-                        TheShip.Position.Y = GraphicUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
+                        TheShip.Position = new Point(GraphicUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
+                         GraphicUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
                         PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
                         lastGameEventTick = TimerVal;
                 }

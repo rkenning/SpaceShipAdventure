@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+
 
 namespace SpaceshipCommander
 {
@@ -21,29 +18,28 @@ namespace SpaceshipCommander
         {
             //Initialise stuff
             // Create a new ship object
-            playerShip = new Ship();
-            playerShip.set_Ship_Name("Player's Ship");
-            playerShip.enginesOn();
+            playerShip = new Ship(100,200);
+            playerShip.shipSetName("Player's Ship");
+            playerShip.shipEnginesOn();
             
-
             
         }
 
         public void ProcessGameTick()
         {
-            playerShip.enginesOn();
+            playerShip.shipEnginesOn();
         }
 
         public void ProcessGameEvent(GameEvent TempEvent)
         {
             if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
             {
-                playerShip.rotateClockWise();
+                playerShip.shipRotateClockWise();
             }
 
             if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
             {
-                playerShip.rotateClockWise();
+                playerShip.shipRotateClockWise();
             }
 
 

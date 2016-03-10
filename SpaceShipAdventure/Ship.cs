@@ -29,6 +29,8 @@ namespace SpaceshipCommander
 
 
 
+  
+
         public enum Status
         {
             Moving,
@@ -44,7 +46,7 @@ namespace SpaceshipCommander
 
 
 
-        public void set_status(Ship.Status status)
+        public void shipSetStatus(Ship.Status status)
         {
             ShipStatus = status;
             if (status == Ship.Status.Stopped)
@@ -55,22 +57,24 @@ namespace SpaceshipCommander
 
         }
 
-        public void set_Ship_Name(string ship_name)
+        public void shipSetName(string ship_name)
         {
             this.ShipName = ship_name;
         }
 
-        public void enginesOn()
+        public void shipEnginesOn()
         {
             engines = 1;
         }
 
 
 
-        public Ship() 
+        public Ship(int x, int y) 
         {
-            this.TheImage = ShipMove90;
-            this.Position = new Point(200, 300);
+            TheImage = ShipMove90;
+            ImageBounds.Width = TheImage.Width - 2;
+            ImageBounds.Height = TheImage.Height - 2;
+            Position = new Point(x, y);
       
             volicity = 4;
             Power = 100;
@@ -79,18 +83,28 @@ namespace SpaceshipCommander
         }
 
 
-        public void rotateCounterClockWise()
+        public void shipRotateCounterClockWise()
         {
             direction -= 45;
             if (direction < 0)
             { direction = 315; };
         }
 
-        public void rotateClockWise()
+        public void shipRotateClockWise()
         {
             direction += 45;
             if (direction > 360)
             { direction = 45; };
+        }
+
+       public override void UpdateBounds()
+        {
+            /* Didn't want to have an override updatebounds however IShip interface cannot reference GameObject class position
+            resulting in a mix of Position values.  Position is now local to this class so require update bounds localy
+            TODO there must be a better way to do this!
+            */
+            MovingBounds = ImageBounds;
+            MovingBounds.Offset(Position);
         }
 
         private void draw_Shield(Graphics g)

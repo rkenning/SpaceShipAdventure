@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
@@ -10,7 +9,7 @@ using System.Drawing.Drawing2D;
 
 namespace SpaceshipCommander
 {
-    public static class  GraphicUtil
+    public static class  MovementUtil
     {
         public static int new_x (int speed_, int angle_, int cur_x_  )
             {

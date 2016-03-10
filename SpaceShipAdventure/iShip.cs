@@ -4,9 +4,6 @@ using System.Drawing.Drawing2D;
 namespace SpaceshipCommander
 {
 
-    //Defined outside the IShip interface to support setstatus 
-    //TODO May need to pop back and re-work this bit as x2 set of list to maintain
-
     interface IShip 
     {
 
@@ -24,7 +21,7 @@ namespace SpaceshipCommander
         Ship.Status ShipStatus { get; set; }
 
         bool IsShipColliding(Rectangle r);
-        void set_status(Ship.Status status);
+        void shipSetStatus(Ship.Status status);
 
         //void set_status(Iship.Status status);
     }

@@ -83,7 +83,7 @@
     <Compile Include="Asteroid.cs" />
     <Compile Include="FinishGate.cs" />
     <Compile Include="Ship.cs" />
-    <Compile Include="GraphicUtil.cs" />
+    <Compile Include="movementUtil.cs" />
     <EmbeddedResource Include="GameWindow.resx">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </EmbeddedResource>

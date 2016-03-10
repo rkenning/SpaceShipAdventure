@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceshipCommander
 {
@@ -10,12 +8,12 @@ namespace SpaceshipCommander
     {
 
 
-        void set_Ship_Name(String Ship_Name);
-        void enginesOn();
-        void rotateClockWise();
-        void rotateCounterClockWise();
+        void shipSetName(String Ship_Name);
+        void shipEnginesOn();
+        void shipRotateClockWise();
+        void shipRotateCounterClockWise();
 
-
+     
 
        // void set_status(Iship.Status status);
     }

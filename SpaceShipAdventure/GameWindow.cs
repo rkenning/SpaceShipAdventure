@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -137,8 +131,8 @@ namespace SpaceshipCommander
                 {
 
 
-                    TheShip.Position = new Point(GraphicUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X)
-                    , GraphicUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y));
+                    TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity, TheShip.direction, TheShip.Position.X)
+                    , MovementUtil.new_y(TheShip.volicity, TheShip.direction, TheShip.Position.Y));
                     //TheShip.set_status(Ship.Status.Moving);
                 };
 
@@ -157,8 +151,8 @@ namespace SpaceshipCommander
                         {
                             TheShip.ShipStatus = Ship.Status.HitAstorid;
                             TheShip.engines = 0;
-                            TheShip.Position  = new Point (GraphicUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X)
-                            ,GraphicUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y));
+                            TheShip.Position  = new Point (MovementUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X)
+                            ,MovementUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y));
 
                                 PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
                                 lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
@@ -170,11 +164,11 @@ namespace SpaceshipCommander
                 /* Check for the screen edges and stop the ship */
                 if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 50 || TheShip.Position.X < 0 || TheShip.Position.X > ClientRectangle.Width - 50)
                 {
-                    TheShip.set_status(Ship.Status.Stopped);
+                    TheShip.shipSetStatus(Ship.Status.Stopped);
 
                         TheShip.engines = 0;
-                        TheShip.Position = new Point(GraphicUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
-                         GraphicUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
+                        TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
+                         MovementUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
                         PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
                         lastGameEventTick = TimerVal;
                 }

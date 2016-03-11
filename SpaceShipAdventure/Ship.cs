@@ -9,10 +9,10 @@ namespace SpaceshipCommander
     class Ship :  GameObject , IShip, IShip_Player 
     {
         public new Point Position { get; set; } 
-        public int Power { get; set; }
+        public int ShieldPower { get; set; }
         public int direction { get; set; }
         public int volicity { get; set; }
-        public int engines { get; set; } // 1 on 0 off
+        public int Engines { get; set; } // 1 on 0 off
         public string ShipName { get; set; }
 
         private Image ShipExplode = Image.FromFile(@"..\..\images\ship_explode.png");
@@ -51,7 +51,7 @@ namespace SpaceshipCommander
             ShipStatus = status;
             if (status == Ship.Status.Stopped)
             {
-                engines = 0;
+                Engines = 0;
             }
 
 
@@ -64,20 +64,20 @@ namespace SpaceshipCommander
 
         public void shipEnginesOn()
         {
-            engines = 1;
+            Engines = 1;
         }
 
 
 
-        public Ship(int x, int y) 
+        public Ship()
         {
             TheImage = ShipMove90;
             ImageBounds.Width = TheImage.Width - 2;
             ImageBounds.Height = TheImage.Height - 2;
-            Position = new Point(x, y);
+            Position = new Point(100, 200);
       
             volicity = 4;
-            Power = 100;
+            ShieldPower = 100;
             ShipStatus = Status.Stopped;
             direction = 90;
         }
@@ -110,7 +110,7 @@ namespace SpaceshipCommander
         private void draw_Shield(Graphics g)
         {
 
-            Pen SheildPen = new Pen(Color.FromArgb(Power + 10, 255, 36, 72), 5);
+            Pen SheildPen = new Pen(Color.FromArgb(ShieldPower + 10, 255, 36, 72), 5);
             //Rectangle sheildrect 
 
             Rectangle sheildBound = this.GetBounds();
@@ -197,10 +197,11 @@ namespace SpaceshipCommander
             //TODO Work through the collision process
             if (this.GetBounds().IntersectsWith(r))
             {
-                Power -= 1;
-                if (Power <= 0)
+                //Decrease the shield power 
+                ShieldPower -= 5;
+                if (ShieldPower <= 0)
                 {
-                    this.engines = 0; // Turn off the engines as we have been hit
+                    this.Engines = 0; // Turn off the engines as we have been hit
                     this.ShipStatus = Status.Explode;
 
                 }

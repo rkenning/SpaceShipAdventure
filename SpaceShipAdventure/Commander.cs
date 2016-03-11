@@ -6,19 +6,20 @@ namespace SpaceshipCommander
 {
     class Commander
     {
-        public IShip_Player playerShip { get; set; } 
-        int tick_count = 0;
+        public IShip_Player playerShip;
+        public int SelectedLevel;
+
 
         public Commander()
         {
-
+            SelectedLevel = 1;
         }
 
         public void Game_Start()
         {
             //Initialise stuff
             // Create a new ship object
-            playerShip = new Ship(100,200);
+            playerShip = new Ship();
             playerShip.shipSetName("Player's Ship");
             playerShip.shipEnginesOn();
             

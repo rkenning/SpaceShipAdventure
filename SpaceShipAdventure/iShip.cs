@@ -8,10 +8,10 @@ namespace SpaceshipCommander
     {
 
 
-        int Power { get; set; }
+        int ShieldPower { get; set; }
         int direction { get; set; }
         int volicity { get; set; }
-        int engines { get; set; } // 1 on 0 off
+        int Engines { get; set; } // 1 on 0 off
         string ShipName { get; set; }
         Point Position { get; set; }
 

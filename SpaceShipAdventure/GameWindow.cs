@@ -56,7 +56,7 @@ namespace SpaceshipCommander
             this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
 
-            //            InitializeAllGameObjects(true);
+            // InitializeAllGameObjects(true);
             InitializeAsteroids();
         }
 
@@ -67,15 +67,7 @@ namespace SpaceshipCommander
             Graphics g1 = Graphics.FromImage(curBitmap);
             Graphics g = e.Graphics;
 
-            Single textRight = 1050f;
-
-            PointF power = new PointF(textRight, 1f);
-            PointF direction = new PointF(textRight, 15f);
-            PointF X_Cord = new PointF(textRight, 30f);
-            PointF Y_Cord = new PointF(textRight, 45f);
-            PointF Engines = new PointF(textRight, 60f);
-            PointF Time = new PointF(textRight, 75f);
-
+            //Draw the astorides
             for (int j = 0; j < Asteroids.Length; j++)
             {
                 Asteroids[j].Draw(g1);
@@ -85,26 +77,12 @@ namespace SpaceshipCommander
             {
                 theFinish.Draw(g1);
                 TheShip.Draw(g1);
-
-
-                // Draw the UI
-                using (Font arialFont = new Font("Arial", 10))
-                {
-                    g1.DrawString("Ship Power:" + TheShip.Power.ToString(), arialFont, Brushes.Red, power);
-                    g1.DrawString("Direction:" + TheShip.direction.ToString(), arialFont, Brushes.Red, direction);
-                    g1.DrawString("X Cord:" + TheShip.Position.X.ToString(), arialFont, Brushes.Red, X_Cord);
-                    g1.DrawString("Y Cord:" + TheShip.Position.Y.ToString(), arialFont, Brushes.Red, Y_Cord);
-                    g1.DrawString("Engines:" + TheShip.engines.ToString(), arialFont, Brushes.Red, Engines);
-                    g1.DrawString("Tick:" + TimerVal.ToString(), arialFont, Brushes.Red, Time);
-                }
-
-
+                //Draw the ship UI
+                GameUI.Draw(g1, TheShip, TimerVal, PlayerCommander);
             };
 
+            //Draw the back image to the front
             g.DrawImage(curBitmap, 0, 0);
-
-
-
         }
 
 
@@ -127,7 +105,7 @@ namespace SpaceshipCommander
                 int last_x = TheShip.Position.X;
                 int last_y = TheShip.Position.Y;
                 // Calculate Ship movement if the engines are running
-                if (TheShip.engines == 1)
+                if (TheShip.Engines == 1)
                 {
 
 
@@ -150,7 +128,7 @@ namespace SpaceshipCommander
                         if (!(TheShip.ShipStatus == Ship.Status.Explode))
                         {
                             TheShip.ShipStatus = Ship.Status.HitAstorid;
-                            TheShip.engines = 0;
+                            TheShip.Engines = 0;
                             TheShip.Position  = new Point (MovementUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X)
                             ,MovementUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y));
 
@@ -162,11 +140,11 @@ namespace SpaceshipCommander
                 }
 
                 /* Check for the screen edges and stop the ship */
-                if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 50 || TheShip.Position.X < 0 || TheShip.Position.X > ClientRectangle.Width - 50)
+                if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 60 || TheShip.Position.X < 0 || TheShip.Position.X > ClientRectangle.Width - 60)
                 {
                     TheShip.shipSetStatus(Ship.Status.Stopped);
 
-                        TheShip.engines = 0;
+                        TheShip.Engines = 0;
                         TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
                          MovementUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
                         PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
@@ -206,12 +184,7 @@ namespace SpaceshipCommander
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            testForm test = new testForm();
-            test.Show();
-
-        }
+  
 
         private void cmdStop_Click(object sender, EventArgs e)
         {

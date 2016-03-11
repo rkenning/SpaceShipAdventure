@@ -118,6 +118,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Documentation\ScreenShot.jpg" />
     <Content Include="Images\Astroid1.png" />
     <Content Include="Images\FinishGate.png" />
     <Content Include="Images\ship.png" />

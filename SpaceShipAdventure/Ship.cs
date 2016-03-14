@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SpaceshipCommander
 
@@ -214,7 +215,11 @@ namespace SpaceshipCommander
             return false;
         }
 
+    public List<IGameObject> Scan()
+        {
 
+            return GameDictionary.getGameObjects();
+        }
 
     }
 }

@@ -22,13 +22,25 @@ namespace SpaceshipCommander
             playerShip = new Ship();
             playerShip.shipSetName("Player's Ship");
             playerShip.shipEnginesOn();
-            
-            
+
+            List<IGameObject> tempObj = GameDictionary.getGameObjects();
+
+            foreach (IGameObject temp2 in tempObj)
+            {
+                if (temp2.GetType().ToString() == "SpaceshipCommander.FinishGate")
+                {
+                    int test = temp2.getPositionX();
+                    int test2 = temp2.getPositionY();
+                }
+            };
+
+
         }
 
         public void ProcessGameTick()
         {
             playerShip.shipEnginesOn();
+            if playerShip.
         }
 
         public void ProcessGameEvent(GameEvent TempEvent)

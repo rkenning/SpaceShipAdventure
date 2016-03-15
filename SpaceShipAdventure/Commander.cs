@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 
 namespace SpaceshipCommander
@@ -8,6 +9,7 @@ namespace SpaceshipCommander
     {
         public IShip_Player playerShip;
         public int SelectedLevel;
+        int finishX, finishY;
 
 
         public Commander()
@@ -29,8 +31,8 @@ namespace SpaceshipCommander
             {
                 if (temp2.GetType().ToString() == "SpaceshipCommander.FinishGate")
                 {
-                    int test = temp2.getPositionX();
-                    int test2 = temp2.getPositionY();
+                    finishX= temp2.getPositionX();
+                    finishY= temp2.getPositionY();
                 }
             };
 
@@ -40,7 +42,23 @@ namespace SpaceshipCommander
         public void ProcessGameTick()
         {
             playerShip.shipEnginesOn();
-            if playerShip.
+            Point temppoint = playerShip.shipGetPosition();
+            if (temppoint.X == finishX)
+            {
+                if (temppoint.Y < finishY)
+                {
+                    playerShip.shipRotateClockWise();
+                   // playerShip.shipRotateClockWise();
+                }
+
+
+
+                if (temppoint.Y > finishY)
+                {
+                    playerShip.shipRotateCounterClockWise();
+                    playerShip.shipRotateCounterClockWise();
+                }
+            }
         }
 
         public void ProcessGameEvent(GameEvent TempEvent)

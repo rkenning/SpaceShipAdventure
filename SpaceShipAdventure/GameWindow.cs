@@ -78,7 +78,7 @@ namespace SpaceshipCommander
                 theFinish.Draw(g1);
                 TheShip.Draw(g1);
                 //Draw the ship UI
-                GameUI.Draw(g1, TheShip, TimerVal, PlayerCommander);
+                GameUI.Draw(g1, TheShip, TimerVal,PlayerCommander);
             };
 
             //Draw the back image to the front
@@ -99,7 +99,26 @@ namespace SpaceshipCommander
         {
 
 
+            TickLoop();
+            TickLoop();
+            TickLoop();
+            TickLoop();
+            TickLoop();
+            TickLoop();
 
+
+        }
+
+  
+
+        private void cmdStop_Click(object sender, EventArgs e)
+        {
+            time_GameTick.Enabled = false;
+        }
+
+
+        public void TickLoop()
+        {
             if (TheShip != null)
             {
                 int last_x = TheShip.Position.X;
@@ -129,12 +148,12 @@ namespace SpaceshipCommander
                         {
                             TheShip.ShipStatus = Ship.Status.HitAstorid;
                             TheShip.Engines = 0;
-                            TheShip.Position  = new Point (MovementUtil.new_x(TheShip.volicity -15 , TheShip.direction , TheShip.Position.X)
-                            ,MovementUtil.new_y(TheShip.volicity -15, TheShip.direction  , TheShip.Position.Y));
+                            TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity - 15, TheShip.direction, TheShip.Position.X)
+                            , MovementUtil.new_y(TheShip.volicity - 15, TheShip.direction, TheShip.Position.Y));
 
-                                PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
-                                lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
-                                lastGameEventTick = TimerVal;
+                            PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
+                            lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
+                            lastGameEventTick = TimerVal;
                         }
                     }
                 }
@@ -144,11 +163,11 @@ namespace SpaceshipCommander
                 {
                     TheShip.shipSetStatus(Ship.Status.Stopped);
 
-                        TheShip.Engines = 0;
-                        TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity -15, TheShip.direction , TheShip.Position.X),
-                         MovementUtil.new_y(TheShip.volicity-15, TheShip.direction , TheShip.Position.Y));
-                        PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
-                        lastGameEventTick = TimerVal;
+                    TheShip.Engines = 0;
+                    TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity - 15, TheShip.direction, TheShip.Position.X),
+                     MovementUtil.new_y(TheShip.volicity - 15, TheShip.direction, TheShip.Position.Y));
+                    PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
+                    lastGameEventTick = TimerVal;
                 }
 
                 /* Check the Ship has reached the finish */
@@ -181,16 +200,7 @@ namespace SpaceshipCommander
 
             /* Finally Add to the timer variable */
             TimerVal = TimerVal + 1;
-
         }
-
-  
-
-        private void cmdStop_Click(object sender, EventArgs e)
-        {
-            time_GameTick.Enabled = false;
-        }
-
 
     }
 }

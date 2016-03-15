@@ -10,7 +10,7 @@ namespace SpaceshipCommander
 
             Single textRight = 1050f;
 
-          
+
             PointF direction = new PointF(textRight, 15f);
             PointF X_Cord = new PointF(textRight, 30f);
             PointF Y_Cord = new PointF(textRight, 45f);
@@ -55,7 +55,7 @@ namespace SpaceshipCommander
                 g1.DrawString("Tick:" + timer.ToString(), arialFont, Brushes.Red, Time);
 
                 //Power and power bar stuff
-                g1.FillRectangle(ShieldPowerBrush, textRight, 110, tempShip.ShieldPower,10); 
+                g1.FillRectangle(ShieldPowerBrush, textRight, 110, tempShip.ShieldPower, 10);
                 g1.DrawString("Ship Power:", arialFont, Brushes.Red, new PointF(textRight, 91f));
             }
         }

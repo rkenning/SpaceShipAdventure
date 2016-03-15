@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Collections;
-using System.Collections.Generic;
+
 
 namespace SpaceshipCommander
 
@@ -77,7 +76,7 @@ namespace SpaceshipCommander
             ImageBounds.Height = TheImage.Height - 2;
             Position = new Point(100, 200);
       
-            volicity = 4;
+            volicity = 1;
             ShieldPower = 100;
             ShipStatus = Status.Stopped;
             direction = 90;
@@ -96,6 +95,12 @@ namespace SpaceshipCommander
             direction += 45;
             if (direction > 360)
             { direction = 45; };
+        }
+
+
+        public Point shipGetPosition()
+        {
+            return Position;
         }
 
        public override void UpdateBounds()
@@ -215,11 +220,7 @@ namespace SpaceshipCommander
             return false;
         }
 
-    public List<IGameObject> Scan()
-        {
 
-            return GameDictionary.getGameObjects();
-        }
 
     }
 }

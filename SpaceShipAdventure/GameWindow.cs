@@ -102,10 +102,6 @@ namespace SpaceshipCommander
             TickLoop();
             TickLoop();
             TickLoop();
-            TickLoop();
-            TickLoop();
-            TickLoop();
-
 
         }
 

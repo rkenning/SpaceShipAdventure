@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace SpaceshipCommander
 {
     public static class  MovementUtil
@@ -13,7 +14,7 @@ namespace SpaceshipCommander
                                               // note:  angle 0 is due east, not due north.  Rotates counter-clockwise,
                                               //  so angle 90 degrees is due north.
             double new_x = cur_x_ + (speed_ * Math.Cos(angleR));
-            return Convert.ToInt16(new_x);
+            return Math.Abs(Convert.ToInt16(new_x));
         }
 
         public static int new_y(int speed_, int angle_, int cur_y_)
@@ -26,7 +27,7 @@ namespace SpaceshipCommander
                                               //  so angle 90 degrees is due north.
             double new_y = cur_y_ + (speed_ * Math.Sin(angleR));
             
-            return Convert.ToInt16(new_y);
+            return Math.Abs(Convert.ToInt16(new_y));
         }
        
         

@@ -19,8 +19,13 @@ namespace SpaceshipCommander
             List<object> leveldata = new List<object>();
 
             leveldata.Add(new Asteroid(500, 300));
-            leveldata.Add(new Asteroid(1300, 300));
+            leveldata.Add(new Asteroid(30, 300));
             leveldata.Add(new Asteroid(410, 220));
+            leveldata.Add(new Asteroid(510, 220));
+            leveldata.Add(new Asteroid(610, 220));
+            leveldata.Add(new Asteroid(710, 220));
+
+
             leveldata.Add(new FinishGate(1000, 300));
             return leveldata;
         }

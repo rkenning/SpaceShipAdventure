@@ -9,12 +9,8 @@ namespace SpaceshipCommander
     {
 
         //Define Game Objects
-
-        private Asteroid[] Asteroids = new Asteroid[5];
-        private FinishGate theFinish = new FinishGate(1000, 300);
-
+        Level LevelData = new Level();
         private Commander PlayerCommander = new Commander();
-
         IShip TheShip;
 
         double lastGameEventTick = 0;
@@ -22,6 +18,10 @@ namespace SpaceshipCommander
 
         private void GameWindow_Load(object sender, EventArgs e)
         {
+
+            //Get level data based on 
+            LevelData.PopulateLevelData(PlayerCommander.SelectedLevel);
+
             TimerVal = 0.0;
             PlayerCommander.Game_Start();
             TheShip = (IShip)PlayerCommander.playerShip;
@@ -30,14 +30,14 @@ namespace SpaceshipCommander
 
 
         //Intialise Game Objects
-        void InitializeAsteroids()
+       /* void InitializeAsteroids()
         {
             Asteroids[0] = new Asteroid(500, 300);
             Asteroids[1] = new Asteroid(1300, 300);
             Asteroids[2] = new Asteroid(410, 220);
             Asteroids[3] = new Asteroid(750, 500);
             Asteroids[4] = new Asteroid(800, 400);
-        }
+        }*/
 
 
 
@@ -57,7 +57,7 @@ namespace SpaceshipCommander
             this.UpdateStyles();
 
             // InitializeAllGameObjects(true);
-            InitializeAsteroids();
+            //InitializeAsteroids();
         }
 
 
@@ -68,14 +68,14 @@ namespace SpaceshipCommander
             Graphics g = e.Graphics;
 
             //Draw the astorides
-            for (int j = 0; j < Asteroids.Length; j++)
+            foreach (Asteroid tempAsteriod in LevelData.Asteroids)
             {
-                Asteroids[j].Draw(g1);
+                tempAsteriod.Draw(g1);
             }
 
             if (TheShip != null)
             {
-                theFinish.Draw(g1);
+                LevelData.theFinish.Draw(g1);
                 TheShip.Draw(g1);
                 //Draw the ship UI
                 GameUI.Draw(g1, TheShip, TimerVal,PlayerCommander);
@@ -135,17 +135,17 @@ namespace SpaceshipCommander
                 //Check Astorides
 
                 //TheShip.ShipStatus = Ship.Status.Nothing;
-                for (int j = 0; j < Asteroids.Length; j++)
+                foreach (Asteroid tempAsteriod in LevelData.Asteroids)
                 {
                     //Check for astoride collisions whith ships
-                    if (TheShip.IsShipColliding(Asteroids[j].GetBounds()))
+                    if (TheShip.IsShipColliding(tempAsteriod.GetBounds()))
                     {
                         if (!(TheShip.ShipStatus == Ship.Status.Explode))
                         {
                             TheShip.ShipStatus = Ship.Status.HitAstorid;
                             TheShip.Engines = 0;
-                            TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity - 15, TheShip.direction, TheShip.Position.X)
-                            , MovementUtil.new_y(TheShip.volicity - 15, TheShip.direction, TheShip.Position.Y));
+                            TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity - 5, TheShip.direction, TheShip.Position.X)
+                            , MovementUtil.new_y(TheShip.volicity - 5, TheShip.direction, TheShip.Position.Y));
 
                             PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.HitAstorid));
                             lastGameEvent = new GameEvent(GameEvent.Event_Types.HitAstorid);
@@ -155,19 +155,19 @@ namespace SpaceshipCommander
                 }
 
                 /* Check for the screen edges and stop the ship */
-                if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 60 || TheShip.Position.X < 0 || TheShip.Position.X > ClientRectangle.Width - 60)
+                if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 60 || TheShip.Position.X < 2 || TheShip.Position.X > ClientRectangle.Width - 60)
                 {
                     TheShip.shipSetStatus(Ship.Status.Stopped);
 
                     TheShip.Engines = 0;
-                    TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity - 15, TheShip.direction, TheShip.Position.X),
-                     MovementUtil.new_y(TheShip.volicity - 15, TheShip.direction, TheShip.Position.Y));
+                    TheShip.Position = new Point(MovementUtil.new_x(TheShip.volicity - 10, TheShip.direction, TheShip.Position.X),
+                     MovementUtil.new_y(TheShip.volicity - 10, TheShip.direction, TheShip.Position.Y));
                     PlayerCommander.ProcessGameEvent(new GameEvent(GameEvent.Event_Types.EdgeOfSpace));
                     lastGameEventTick = TimerVal;
                 }
 
                 /* Check the Ship has reached the finish */
-                if (TheShip.IsShipColliding(theFinish.GetBounds()))
+                if (TheShip.IsShipColliding(LevelData.theFinish.GetBounds()))
                 {
                     time_GameTick.Enabled = false;
                     MessageBox.Show("Ship : [" + TheShip.ShipName + "], finish level in :" + TimerVal.ToString() + " ticks");

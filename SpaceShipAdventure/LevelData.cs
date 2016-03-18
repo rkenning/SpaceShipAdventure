@@ -6,14 +6,32 @@ using System.Threading.Tasks;
 
 namespace SpaceshipCommander
 {
-    class LevelData
+    class Level
     {
-        private Asteroid[] Asteroids = new Asteroid[99];
-        private FinishGate theFinish;
+        public List<Asteroid> Asteroids = new List<Asteroid>();
+        public FinishGate theFinish;
 
-        public void LoadLevelData(int LevelNumber)
+        List<object> levelData;
+
+        public void PopulateLevelData(int LevelNumber)
         {
-            LevelLoader.LoadLevel(LevelNumber);
+            levelData = LevelLoader.LoadLevel(LevelNumber);
+
+            foreach (object temp in levelData)
+            {
+                if (temp.GetType() == typeof(Asteroid))
+                {
+                    Asteroid tmpAst = (Asteroid)temp;
+                    Asteroids.Add(tmpAst);
+                }
+                if (temp.GetType() == typeof(FinishGate))
+                {
+                    theFinish = (FinishGate)temp;
+                }
+
+            }
+
+
         }
     }
 }

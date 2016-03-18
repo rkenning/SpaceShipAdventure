@@ -29,7 +29,7 @@ namespace SpaceshipCommander
 
             foreach (IGameObject temp2 in tempObj)
             {
-                if (temp2.GetType().ToString() == "SpaceshipCommander.FinishGate")
+                if (temp2.GetType() == typeof(FinishGate))
                 {
                     finishX= temp2.getPositionX();
                     finishY= temp2.getPositionY();
@@ -48,7 +48,7 @@ namespace SpaceshipCommander
                 if (temppoint.Y < finishY)
                 {
                     playerShip.shipRotateClockWise();
-                   // playerShip.shipRotateClockWise();
+                    playerShip.shipRotateClockWise();
                 }
 
 

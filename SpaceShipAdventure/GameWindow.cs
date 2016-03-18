@@ -28,22 +28,6 @@ namespace SpaceshipCommander
 
         }
 
-
-        //Intialise Game Objects
-       /* void InitializeAsteroids()
-        {
-            Asteroids[0] = new Asteroid(500, 300);
-            Asteroids[1] = new Asteroid(1300, 300);
-            Asteroids[2] = new Asteroid(410, 220);
-            Asteroids[3] = new Asteroid(750, 500);
-            Asteroids[4] = new Asteroid(800, 400);
-        }*/
-
-
-
-
-
-
         private double TimerVal;
 
         public GameWindow()
@@ -55,9 +39,6 @@ namespace SpaceshipCommander
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.SetStyle(ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
             this.UpdateStyles();
-
-            // InitializeAllGameObjects(true);
-            //InitializeAsteroids();
         }
 
 

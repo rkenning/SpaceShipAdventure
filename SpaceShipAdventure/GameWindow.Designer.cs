@@ -35,6 +35,7 @@
             this.lblPower = new System.Windows.Forms.Label();
             this.txtDebug = new System.Windows.Forms.TextBox();
             this.cmdStop = new System.Windows.Forms.Button();
+            this.cmdQuit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // time_GameTick
@@ -80,12 +81,23 @@
             this.cmdStop.UseVisualStyleBackColor = true;
             this.cmdStop.Click += new System.EventHandler(this.cmdStop_Click);
             // 
+            // cmdQuit
+            // 
+            this.cmdQuit.Location = new System.Drawing.Point(186, 31);
+            this.cmdQuit.Name = "cmdQuit";
+            this.cmdQuit.Size = new System.Drawing.Size(74, 23);
+            this.cmdQuit.TabIndex = 11;
+            this.cmdQuit.Text = "QUIT";
+            this.cmdQuit.UseVisualStyleBackColor = true;
+            this.cmdQuit.Click += new System.EventHandler(this.cmdQuit_Click);
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1184, 562);
+            this.Controls.Add(this.cmdQuit);
             this.Controls.Add(this.cmdStop);
             this.Controls.Add(this.txtDebug);
             this.Controls.Add(this.lblPower);
@@ -106,6 +118,7 @@
         private System.Windows.Forms.Label lblPower;
         private System.Windows.Forms.TextBox txtDebug;
         private System.Windows.Forms.Button cmdStop;
+        private System.Windows.Forms.Button cmdQuit;
     }
 }
 

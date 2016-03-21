@@ -76,7 +76,7 @@ namespace SpaceshipCommander
             ImageBounds.Height = TheImage.Height - 2;
             Position = new Point(100, 200);
       
-            volicity = 1;
+            volicity = 2;
             ShieldPower = 100;
             ShipStatus = Status.Stopped;
             direction = 90;

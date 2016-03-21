@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+
 
 
 namespace SpaceshipCommander
@@ -12,11 +14,14 @@ namespace SpaceshipCommander
 
         public Commander()
         {
-            SelectedLevel = 1;
+            SelectedLevel = 2;
         }
 
         public void Game_Start()
         {
+            playerShip = new Ship();
+            playerShip.shipSetName("Player's Ship");
+            playerShip.shipEnginesOn();
         }
 
         public void ProcessGameTick()
@@ -25,7 +30,7 @@ namespace SpaceshipCommander
 
         public void ProcessGameEvent(GameEvent TempEvent)
         {
-
+            Debug.WriteLine("My Log:"+TempEvent.GetType());
         }
 
     }

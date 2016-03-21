@@ -136,7 +136,7 @@ namespace SpaceshipCommander
                 }
 
                 /* Check for the screen edges and stop the ship */
-                if (TheShip.Position.Y < 0 || TheShip.Position.Y > ClientRectangle.Height - 60 || TheShip.Position.X < 2 || TheShip.Position.X > ClientRectangle.Width - 60)
+                if (TheShip.Position.Y < 2 || TheShip.Position.Y > ClientRectangle.Height - 60 || TheShip.Position.X < 2 || TheShip.Position.X > ClientRectangle.Width - 60)
                 {
                     TheShip.shipSetStatus(Ship.Status.Stopped);
 
@@ -152,7 +152,7 @@ namespace SpaceshipCommander
                 {
                     time_GameTick.Enabled = false;
                     MessageBox.Show("Ship : [" + TheShip.ShipName + "], finish level in :" + TimerVal.ToString() + " ticks");
-
+                    this.Close();
                 };
 
             };

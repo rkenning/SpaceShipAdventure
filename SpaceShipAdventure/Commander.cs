@@ -19,7 +19,9 @@ namespace SpaceshipCommander
 
         public void Game_Start()
         {
-         }
+           
+
+        }
 
         public void ProcessGameTick()
         {

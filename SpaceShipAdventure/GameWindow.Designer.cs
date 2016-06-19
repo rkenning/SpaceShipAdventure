@@ -103,7 +103,7 @@
             this.Controls.Add(this.lblPower);
             this.Controls.Add(this.button1);
             this.Name = "GameWindow";
-            this.Text = "Space Ship Adventure";
+            this.Text = "Space Ship Commander";
             this.Load += new System.EventHandler(this.GameWindow_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameWindow_Paint);
             this.ResumeLayout(false);

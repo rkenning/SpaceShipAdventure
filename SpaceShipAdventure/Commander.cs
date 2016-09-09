@@ -17,64 +17,22 @@ namespace SpaceshipCommander
 
             public Commander()
             {
-                SelectedLevel = 2;
+                SelectedLevel = 1;
             }
 
             public void Game_Start()
             {
-                //Initialise stuff
-                // Create a new ship object
-                playerShip = new Ship();
-                playerShip.shipSetName("Gmoney's Ship");
-                playerShip.shipEnginesOn();
-
-                List<IGameObject> tempObj = GameDictionary.getGameObjects();
-
-                foreach (IGameObject temp2 in tempObj)
-                {
-                    if (temp2.GetType() == typeof(FinishGate))
-                    {
-                        finishX = temp2.getPositionX();
-                        finishY = temp2.getPositionY();
-                    }
-                };
-
-
+            
             }
 
             public void ProcessGameTick()
             {
-                playerShip.shipEnginesOn();
-                Point temppoint = playerShip.shipGetPosition();
-                if (temppoint.X == finishX)
-                {
-                    if (temppoint.Y < finishY)
-                    {
-                        playerShip.shipRotateClockWise();
-                        playerShip.shipRotateClockWise();
-                    }
-                playerShip.shipRotateClockWise();
-
-
-                if (temppoint.Y > finishY)
-                    {
-                        playerShip.shipRotateCounterClockWise();
-                    }
-                }
+            
             }
 
             public void ProcessGameEvent(GameEvent TempEvent)
             {
-                if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
-                {
-                    playerShip.shipRotateCounterClockWise();
-                }
-
-                if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
-                {
-                    playerShip.shipRotateClockWise();
-                }
-
+            
 
             }
 

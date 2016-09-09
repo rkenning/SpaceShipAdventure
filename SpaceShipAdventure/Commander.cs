@@ -7,30 +7,76 @@ using System.Drawing;
 
 namespace SpaceshipCommander
 {
-    class Commander
-    {
-        public int SelectedLevel;
-        public IShip_Player playerShip;
-
-        public Commander()
+    
+        class Commander
         {
-            SelectedLevel = 1;
+            public IShip_Player playerShip;
+            public int SelectedLevel;
+            int finishX, finishY;
+
+
+            public Commander()
+            {
+                SelectedLevel = 2;
+            }
+
+            public void Game_Start()
+            {
+                //Initialise stuff
+                // Create a new ship object
+                playerShip = new Ship();
+                playerShip.shipSetName("Gmoney's Ship");
+                playerShip.shipEnginesOn();
+
+                List<IGameObject> tempObj = GameDictionary.getGameObjects();
+
+                foreach (IGameObject temp2 in tempObj)
+                {
+                    if (temp2.GetType() == typeof(FinishGate))
+                    {
+                        finishX = temp2.getPositionX();
+                        finishY = temp2.getPositionY();
+                    }
+                };
+
+
+            }
+
+            public void ProcessGameTick()
+            {
+                playerShip.shipEnginesOn();
+                Point temppoint = playerShip.shipGetPosition();
+                if (temppoint.X == finishX)
+                {
+                    if (temppoint.Y < finishY)
+                    {
+                        playerShip.shipRotateClockWise();
+                        playerShip.shipRotateClockWise();
+                    }
+                playerShip.shipRotateClockWise();
+
+
+                if (temppoint.Y > finishY)
+                    {
+                        playerShip.shipRotateCounterClockWise();
+                    }
+                }
+            }
+
+            public void ProcessGameEvent(GameEvent TempEvent)
+            {
+                if (TempEvent.event_type == GameEvent.Event_Types.HitAstorid)
+                {
+                    playerShip.shipRotateCounterClockWise();
+                }
+
+                if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
+                {
+                    playerShip.shipRotateClockWise();
+                }
+
+
+            }
+
         }
-
-        public void Game_Start()
-        {
-           
-
-        }
-
-        public void ProcessGameTick()
-        {
-        }
-
-        public void ProcessGameEvent(GameEvent TempEvent)
-        {
-
-        }
-
     }
-}

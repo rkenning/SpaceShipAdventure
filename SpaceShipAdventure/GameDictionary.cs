@@ -24,5 +24,23 @@ namespace SpaceshipCommander
             return GameList;
         }
 
+        public static List<IGameObject> getGameObjects(GamePosition TempPos, int Radius)
+        {
+            List<IGameObject> ScannedList = new List<SpaceshipCommander.IGameObject>();
+
+            foreach (IGameObject tempObject in GameList)
+            {
+                if ((tempObject.getPositionX() <= (TempPos.X + Radius / 2)) &&
+                    (tempObject.getPositionX() >= (TempPos.X - Radius / 2)) &&
+                    (tempObject.getPositionY() <= (TempPos.Y + Radius / 2)) &&
+                    (tempObject.getPositionY() >= (TempPos.Y - Radius / 2)))
+                {
+                    ScannedList.Add(tempObject);
+                }
+            }
+
+            return ScannedList;
+        }
+
     }
 }

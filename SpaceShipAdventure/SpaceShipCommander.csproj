@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GamePosition.cs" />
     <Compile Include="Test_Command.cs" />
     <Compile Include="Commander.cs" />
     <Compile Include="GameDictionary.cs" />

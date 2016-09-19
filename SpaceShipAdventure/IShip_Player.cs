@@ -13,8 +13,10 @@ namespace SpaceshipCommander
         void shipEnginesOn();
         void shipRotateClockWise();
         void shipRotateCounterClockWise();
+        List<IGameObject> ShipScan(); //Scan the local area around the ship for game objects
 
-        Point shipGetPosition();
+
+        GamePosition getShipPosition();
      
 
        // void set_status(Iship.Status status);

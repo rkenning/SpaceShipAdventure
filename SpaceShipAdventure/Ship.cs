@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-
+using System.Collections.Generic;
 
 namespace SpaceshipCommander
 
 {
-    class Ship :  GameObject , IShip, IShip_Player 
+    class Ship : GameObject, IShip, IShip_Player
     {
-        public new Point Position { get; set; } 
+        public new Point Position { get; set; }
+
         public int ShieldPower { get; set; }
         public int direction { get; set; }
         public int volicity { get; set; }
@@ -29,7 +30,7 @@ namespace SpaceshipCommander
 
 
 
-  
+
 
         public enum Status
         {
@@ -44,7 +45,11 @@ namespace SpaceshipCommander
 
         public Status ShipStatus { get; set; }
 
-
+        public GamePosition getShipPosition()
+        {
+            GamePosition ShipPosition = new GamePosition(Position.X, Position.Y);
+            return ShipPosition;
+        }
 
         public void shipSetStatus(Ship.Status status)
         {
@@ -75,7 +80,8 @@ namespace SpaceshipCommander
             ImageBounds.Width = TheImage.Width - 2;
             ImageBounds.Height = TheImage.Height - 2;
             Position = new Point(100, 200);
-      
+            //without the need to pass the System.Drawing.Point object
+
             volicity = 2;
             ShieldPower = 100;
             ShipStatus = Status.Stopped;
@@ -103,7 +109,13 @@ namespace SpaceshipCommander
             return Position;
         }
 
-       public override void UpdateBounds()
+
+        public List<IGameObject> ShipScan()
+        {
+            return GameDictionary.getGameObjects(getShipPosition(), 300);
+        }
+
+        public override void UpdateBounds()
         {
             /* Didn't want to have an override updatebounds however IShip interface cannot reference GameObject class position
             resulting in a mix of Position values.  Position is now local to this class so require update bounds localy
@@ -138,7 +150,7 @@ namespace SpaceshipCommander
             {
                 tempShip = ShipMove45;
             }
-            if (direction ==135)
+            if (direction == 135)
             {
                 tempShip = ShipMove135;
             }

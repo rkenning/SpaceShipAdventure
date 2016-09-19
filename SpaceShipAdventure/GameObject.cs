@@ -8,8 +8,10 @@ namespace SpaceshipCommander
     {
         protected Image TheImage = null;
         public Point Position = new Point(50, 50);
+        public GamePosition TempPosition;
         public Rectangle ImageBounds = new Rectangle(0, 0, 5, 5);
         public Rectangle MovingBounds = new Rectangle();
+        
 
         //Exposed method via IGameObject for use by player
         public int getPositionX()
@@ -20,6 +22,12 @@ namespace SpaceshipCommander
         public int getPositionY()
         {
             return Position.Y;
+        }
+
+        public GamePosition GetPosition()
+        {
+            TempPosition = new GamePosition(Position.X, Position.Y);
+            return TempPosition;
         }
 
         public GameObject(string fileName)

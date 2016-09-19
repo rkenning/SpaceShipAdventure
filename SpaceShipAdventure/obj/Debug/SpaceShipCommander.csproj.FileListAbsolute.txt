@@ -7,3 +7,12 @@ C:\Users\rkenn\Source\Repos\SpaceshipCommander\SpaceShipAdventure\obj\Debug\Spac
 C:\Users\rkenn\Source\Repos\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceShipCommander.csproj.GenerateResource.Cache
 C:\Users\rkenn\Source\Repos\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceshipCommander.exe
 C:\Users\rkenn\Source\Repos\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceshipCommander.pdb
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\bin\Debug\SpaceshipCommander.exe.config
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceshipCommander.exe
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceshipCommander.pdb
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\bin\Debug\SpaceshipCommander.exe
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\bin\Debug\SpaceshipCommander.pdb
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceShipCommander.csprojResolveAssemblyReference.cache
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceshipCommander.GameWindow.resources
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceshipCommander.Properties.Resources.resources
+C:\Users\rkenn\Source\Repos\sp2\SpaceshipCommander\SpaceShipAdventure\obj\Debug\SpaceShipCommander.csproj.GenerateResource.Cache

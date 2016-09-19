@@ -11,5 +11,7 @@ namespace SpaceshipCommander
     {
         int getPositionX();
         int getPositionY();
+
+        GamePosition GetPosition();
     }
 }

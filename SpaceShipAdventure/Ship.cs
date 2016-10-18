@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SpaceshipCommander
 
@@ -49,6 +50,11 @@ namespace SpaceshipCommander
         {
             GamePosition ShipPosition = new GamePosition(Position.X, Position.Y);
             return ShipPosition;
+        }
+
+        public int GetDirection()
+        {
+            return this.direction;
         }
 
         public void shipSetStatus(Ship.Status status)
@@ -110,9 +116,42 @@ namespace SpaceshipCommander
         }
 
 
-        public List<IGameObject> ShipScan()
+        public List<IGameObject_Player> ShipScan()
         {
-            return GameDictionary.getGameObjects(getShipPosition(), 300);
+            //This is a little messy as I needed to cast a proper list of GameObjects to a Players List of Game objects
+            //the interface helps to limt the access the player has to 'root' game objects + limits the options from the 
+            //intelisense when writing code within the commander class
+            List<IGameObject> tempObjs = GameDictionary.getGameObjects(getShipPosition(), 150);
+            IGameObject_Player playerObj;
+            List<IGameObject_Player> playerObjs = new List<IGameObject_Player>();
+            foreach (IGameObject tempObj in tempObjs)
+            {
+                playerObj = (IGameObject_Player)tempObj;
+                playerObjs.Add(playerObj);
+            }
+
+
+
+            return playerObjs;
+        }
+
+        public int getTargetAngle(IGameObject_Player tempObj)
+        {
+            int tempAng =0;
+
+            //IGameObject tempObj2 = (IGameObject)tempObj;
+
+            double a = Math.Abs(Position.X - tempObj.getPositionX() );
+            double b = Math.Abs(Position.Y - tempObj.getPositionY());
+            
+            tempAng = Convert.ToInt16(MovementUtil.Cotan(b / a)*180)+180;
+
+            if (tempAng > 360)
+            {
+                tempAng -= 300;
+            }
+
+            return tempAng;
         }
 
         public override void UpdateBounds()

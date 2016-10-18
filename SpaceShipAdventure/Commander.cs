@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 
 namespace SpaceshipCommander
@@ -9,12 +10,12 @@ namespace SpaceshipCommander
     {
         public IShip_Player playerShip;
         public int SelectedLevel;
-        int finishX, finishY;
+        int count = 0;
 
 
         public Commander()
         {
-            SelectedLevel = 2;
+            SelectedLevel = 3;
         }
 
         public void Game_Start()
@@ -32,7 +33,7 @@ namespace SpaceshipCommander
                 if (temp2.GetType() == typeof(FinishGate))
                 {
                     GamePosition temppos = temp2.GetPosition();
-                    
+
                 }
             };
 
@@ -43,39 +44,64 @@ namespace SpaceshipCommander
         {
             playerShip.shipEnginesOn();
             GamePosition temppoint = playerShip.getShipPosition();
-            List<IGameObject> TempList =  playerShip.ShipScan();
+            List<IGameObject_Player> TempList = playerShip.ShipScan();
 
-            foreach (GameObject go in TempList)
+            foreach (IGameObject_Player TempObj in TempList)
             {
-               if (go.GetType().ToString()== "SpaceshipCommander.FinishGate")
+                if (TempObj.GetType().ToString() == "SpaceshipCommander.FinishGate")
                 {
-                    if (playerShip.getShipPosition().X> go.getPositionX())
+                    if (playerShip.getShipPosition().X > TempObj.getPositionX())
                     {
-                        playerShip.shipRotateClockWise();
+                        int test = playerShip.getTargetAngle(TempObj);
+
+                       
+                        Debug.WriteLine("Ship Direction=" + playerShip.GetDirection());
+
+                        Debug.WriteLine(Math.Abs(test - playerShip.GetDirection()));
+                        if (Math.Abs(test - playerShip.GetDirection()) > 60)
+                        {
+                            while (Math.Abs(test - playerShip.GetDirection()) > 60)
+                            {
+                                playerShip.shipRotateClockWise();
+                                Debug.WriteLine("Ship Direction=" + playerShip.GetDirection());
+                                Debug.WriteLine("GAte Direction=" + playerShip.getTargetAngle(TempObj));
+                                Debug.WriteLine("Diff=" + Math.Abs(test - playerShip.GetDirection()));
+                            }
+                        }
+                    }
+                }
+                if (TempObj.GetType().ToString() == "SpaceshipCommander.Asteroid")
+                {
+                    
+                    //TempObj.
+
+                    count += 1;
+                    if (count > 7)
+                    {
+                        playerShip.shipRotateCounterClockWise();
+                        Debug.WriteLine("Count is :"+count);
+                        count = 0;
+                    }
+                    else if(count ==4)
+                    {
+                        playerShip.shipRotateCounterClockWise();
+                        Debug.WriteLine("Count is :" + count);
                     }
 
+                    else
+                    {
+                        playerShip.shipRotateClockWise();
+                        //                        playerShip.shipRotateClockWise();
+                        Debug.WriteLine("Count is :" + count);
+                    }
+                        Debug.WriteLine("Ship Direction=" + playerShip.GetDirection());
+                    }
+
+
+
+
                 }
             }
-
-
-
-            if (temppoint.X == finishX)
-            {
-                if (temppoint.Y < finishY)
-                {
-                    playerShip.shipRotateClockWise();
-                    playerShip.shipRotateClockWise();
-                }
-
-
-
-                if (temppoint.Y > finishY)
-                {
-                    playerShip.shipRotateCounterClockWise();
-                    playerShip.shipRotateCounterClockWise();
-                }
-            }
-        }
 
         public void ProcessGameEvent(GameEvent TempEvent)
         {
@@ -86,6 +112,7 @@ namespace SpaceshipCommander
 
             if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
             {
+                Debug.WriteLine("Edge of space - Turning clockwise");
                 playerShip.shipRotateClockWise();
             }
 

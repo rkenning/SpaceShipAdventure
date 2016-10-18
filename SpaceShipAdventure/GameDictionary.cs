@@ -26,7 +26,7 @@ namespace SpaceshipCommander
 
         public static List<IGameObject> getGameObjects(GamePosition TempPos, int Radius)
         {
-            List<IGameObject> ScannedList = new List<SpaceshipCommander.IGameObject>();
+            List<IGameObject> ScannedList = new List<IGameObject>();
 
             foreach (IGameObject tempObject in GameList)
             {

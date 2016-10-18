@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 
 namespace SpaceshipCommander
 {
-    public class GameObject : IGameObject
+    public class GameObject : IGameObject, IGameObject_Player
     {
         protected Image TheImage = null;
         public Point Position = new Point(50, 50);

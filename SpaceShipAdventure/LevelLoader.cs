@@ -32,7 +32,13 @@ namespace SpaceshipCommander
                     leveldata.Add(new Asteroid(410, 220));
                     leveldata.Add(new Asteroid(510, 220));
                     leveldata.Add(new Asteroid(610, 220));
-                    leveldata.Add(new Asteroid(710, 220));
+                    leveldata.Add(new Asteroid(1, 1));
+                    leveldata.Add(new Asteroid(1, 220));
+                   // leveldata.Add(new Asteroid(710, 1));
+                    leveldata.Add(new Asteroid(700, 40));
+                    leveldata.Add(new Asteroid(600, 400));
+
+
                     leveldata.Add(new FinishGate(1000, 200));
                     break;
             }

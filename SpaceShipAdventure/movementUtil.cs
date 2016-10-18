@@ -46,6 +46,11 @@ namespace SpaceshipCommander
             }
         }
 
+        // Cotangent 
+        public static double Cotan(double x)
+        {
+            return 1 / Math.Tan(x);
+        }
 
     }
 

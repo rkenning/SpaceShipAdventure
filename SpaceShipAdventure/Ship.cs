@@ -88,7 +88,7 @@ namespace SpaceshipCommander
             Position = new Point(100, 200);
             //without the need to pass the System.Drawing.Point object
 
-            volicity = 2;
+            volicity = 5;
             ShieldPower = 100;
             ShipStatus = Status.Stopped;
             direction = 90;
@@ -121,7 +121,7 @@ namespace SpaceshipCommander
             //This is a little messy as I needed to cast a proper list of GameObjects to a Players List of Game objects
             //the interface helps to limt the access the player has to 'root' game objects + limits the options from the 
             //intelisense when writing code within the commander class
-            List<IGameObject> tempObjs = GameDictionary.getGameObjects(getShipPosition(), 150);
+            List<IGameObject> tempObjs = GameDictionary.getGameObjects(getShipPosition(), 175);
             IGameObject_Player playerObj;
             List<IGameObject_Player> playerObjs = new List<IGameObject_Player>();
             foreach (IGameObject tempObj in tempObjs)

@@ -50,6 +50,7 @@ namespace SpaceshipCommander
             {
                 if (TempObj.GetType().ToString() == "SpaceshipCommander.FinishGate")
                 {
+                    Debug.WriteLine("Found Finish Gate at =" + playerShip.getTargetAngle(TempObj));
                     if (playerShip.getShipPosition().X > TempObj.getPositionX())
                     {
                         int test = playerShip.getTargetAngle(TempObj);
@@ -113,7 +114,13 @@ namespace SpaceshipCommander
             if (TempEvent.event_type == GameEvent.Event_Types.EdgeOfSpace)
             {
                 Debug.WriteLine("Edge of space - Turning clockwise");
-                playerShip.shipRotateClockWise();
+                Random rnd = new Random();
+                int randdir = rnd.Next(1, 4);
+                Debug.WriteLine("Random Number = "+randdir.ToString());
+                if (randdir == 1)
+                    playerShip.shipRotateClockWise();
+                else
+                    playerShip.shipRotateCounterClockWise();
             }
 
 

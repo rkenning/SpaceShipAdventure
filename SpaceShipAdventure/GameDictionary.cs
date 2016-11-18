@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SpaceshipCommander
 {
 
-    
 
+    [DebuggerStepThrough()]
     static class GameDictionary
     {
         public static List<IGameObject> GameList = new List<IGameObject>();

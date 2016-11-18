@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 
 namespace SpaceshipCommander
 {
+    [DebuggerStepThrough()]
     public partial class GameWindow : Form
     {
 

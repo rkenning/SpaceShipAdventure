@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Diagnostics;
 
 
@@ -73,31 +72,23 @@ namespace SpaceshipCommander
                 }
                 if (TempObj.GetType().ToString() == "SpaceshipCommander.Asteroid")
                 {
-                    
+
                     //TempObj.
+                    Debug.WriteLine("SCAN --- Asteroid :" + TempObj.getPositionX().ToString() + " " + TempObj.getPositionY().ToString());
+                    int test = playerShip.getTargetAngle(TempObj);
+                    Debug.WriteLine(test.ToString());
+                    //if (Math.Abs(test - playerShip.GetDirection()) < 60)
+                    //{
 
-                    count += 1;
-                    if (count > 7)
-                    {
+                        Debug.WriteLine("SCAN -- Ship Direction=" + playerShip.GetDirection());
                         playerShip.shipRotateCounterClockWise();
-                        Debug.WriteLine("Count is :"+count);
-                        count = 0;
-                    }
-                    else if(count ==4)
-                    {
                         playerShip.shipRotateCounterClockWise();
-                        Debug.WriteLine("Count is :" + count);
-                    }
+                        playerShip.shipRotateCounterClockWise();
+                        //playerShip.shipRotateCounterClockWise();
 
-                    else
-                    {
-                        playerShip.shipRotateClockWise();
-                        //                        playerShip.shipRotateClockWise();
-                        Debug.WriteLine("Count is :" + count);
-                    }
-                        Debug.WriteLine("Ship Direction=" + playerShip.GetDirection());
-                    }
-
+                        Debug.WriteLine("SCAN -- Ship Direction=" + playerShip.GetDirection());
+                    //}
+                }
 
 
 

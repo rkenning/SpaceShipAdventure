@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace SpaceshipCommander
 {
+    [DebuggerStepThrough()]
     public class GameObject : IGameObject, IGameObject_Player
     {
         protected Image TheImage = null;
@@ -30,6 +32,7 @@ namespace SpaceshipCommander
             return TempPosition;
         }
 
+        [DebuggerHidden()]
         public GameObject(string fileName)
         {
             TheImage = Image.FromFile(fileName);

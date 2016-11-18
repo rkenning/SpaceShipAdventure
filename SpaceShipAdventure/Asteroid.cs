@@ -1,10 +1,12 @@
 ﻿using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.Diagnostics;
+
 
 
 namespace SpaceshipCommander
 
 {
+    [DebuggerStepThrough()]
      class  Asteroid : GameObject
     {
 

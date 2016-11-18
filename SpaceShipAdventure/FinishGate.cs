@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
-using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 
 namespace SpaceshipCommander
 
 {
-     class FinishGate : GameObject
+    [DebuggerStepThrough()]
+    class FinishGate : GameObject
     {
 
         public int imageCount = 0;

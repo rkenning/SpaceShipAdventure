@@ -39,7 +39,7 @@ namespace SpaceshipCommander
                     leveldata.Add(new Asteroid(600, 400));
 
 
-                    leveldata.Add(new FinishGate(1000, 200));
+                    leveldata.Add(new FinishGate(1100, 200));
                     break;
             }
             return leveldata;
